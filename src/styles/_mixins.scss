@@ -1,0 +1,92 @@
+
+@mixin svg ($size: 1.5em, $align: 'middle') {
+  width: $size;
+  height: $size;
+  fill: currentColor;
+  vertical-align: $align;
+}
+
+@mixin type-headline1 {
+  font-family: $font-family-heading;
+  font-size: $font-size-h1;
+  font-weight: $font-weight-light;
+  letter-spacing: -1.5px;
+}
+@mixin type-headline2 {
+  font-family: $font-family-heading;
+  font-size: $font-size-h2;
+  font-weight: $font-weight-light;
+  letter-spacing: -0.5px;
+}
+@mixin type-headline3 {
+  font-family: $font-family-heading;
+  font-size: $font-size-h3;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0px;
+}
+@mixin type-headline4 {
+  font-family: $font-family-heading;
+  font-size: $font-size-h4;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.25px;
+}
+@mixin type-headline5 {
+  font-family: $font-family-heading;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0px;
+}
+@mixin type-headline6 {
+  font-family: $font-family-heading;
+  font-size: $font-size-h6;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.25px;
+}
+@mixin type-body1 {
+  font-family: $font-family-body;
+  font-size: $font-size-body1;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.5px;
+}
+@mixin type-body2 {
+  font-family: $font-family-body;
+  font-size: $font-size-body2;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.25px;
+}
+@mixin type-subtitle1 {
+  font-family: $font-family-heading;
+  font-size: $font-size-body1;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.15px;
+}
+@mixin type-subtitle2 {
+  font-family: $font-family-heading;
+  font-size: $font-size-body2;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.1px;
+}
+@mixin type-button {
+  font-family: $font-family-ui;
+  font-size: $font-size-body2;
+  font-weight: $font-weight-medium;
+  letter-spacing: 1.25px;
+}
+@mixin type-overline {
+  font-family: $font-family-body;
+  font-size: $font-size-sub2;
+  font-weight: $font-weight-regular;
+  letter-spacing: 1.5px;
+}
+@mixin type-caption {
+  font-family: $font-family-body;
+  font-size: $font-size-sub1;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.4px;
+}
+@mixin type-code {
+  font-family: $font-family-monospace;
+  font-size: $font-size-code;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0px;
+}

@@ -1,0 +1,39 @@
+
+//
+// Rotating border
+//
+
+$spinner-border-width: .25em;
+$spinner-border-width-sm: .2em;
+$spinner-border-width-lg: .3em;
+$spinner-border-width-xl: .35em;
+
+.spinner-border {
+  display: inline-block;
+  width: $spinner-size;
+  height: $spinner-size;
+  vertical-align: text-bottom;
+  border: $spinner-border-width solid currentColor;
+  border-right-color: transparent;
+  // stylelint-disable-next-line property-disallowed-list
+  border-radius: 50%;
+  animation: spinner-rotate .75s linear infinite;
+}
+
+.spinner-border-sm {
+  width: $spinner-size-sm;
+  height: $spinner-size-sm;
+  border-width: $spinner-border-width-sm;
+}
+
+.spinner-border-lg {
+  width: $spinner-size-lg;
+  height: $spinner-size-lg;
+  border-width: $spinner-border-width-lg;
+}
+
+.spinner-border-xl {
+  width: $spinner-size-xl;
+  height: $spinner-size-xl;
+  border-width: $spinner-border-width-xl;
+}

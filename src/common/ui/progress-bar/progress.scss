@@ -1,0 +1,99 @@
+
+$progress-height: 1em;
+$progress-height-sm: 4px;
+$progress-height-lg: 2em;
+$progress-bar-animation-timing: 0.5s linear infinite;
+
+// Disable animation if transitions are disabled
+@if $enable-transitions {
+  @keyframes progress-bar-stripes {
+    from { background-position: ($progress-height * 2) 0; }
+    to { background-position: 0 0; }
+  }
+}
+
+.progress {
+  display: flex;
+  height: $progress-height;
+  width: 100%;
+  overflow: hidden; // force rounded corners by cropping it
+  line-height: 0;
+  @include font-size($progress-font-size);
+  background-color: $progress-bg;
+  @include border-radius($progress-border-radius);
+  @include box-shadow($progress-box-shadow);
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: $progress-bar-color;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $progress-bar-bg;
+  @include transition($progress-bar-transition);
+}
+
+.progress-bar-striped {
+  @include gradient-striped();
+  background-size: ($progress-height * 2) ($progress-height * 2);
+}
+
+@if $enable-transitions {
+  .progress-bar-animated {
+    animation: progress-bar-stripes $progress-bar-animation-timing;
+
+    @if $enable-prefers-reduced-motion-media-query {
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .progress-#{$color} {
+    background-color: $value !important;
+  }
+  a.progress-#{$color},
+  button.progress-#{$color} {
+    @include hover-focus() {
+      background-color: darken($value, 10%) !important;
+    }
+  }
+}
+
+@each $color, $value in $colors {
+  .progress-#{$color} {
+    background-color: $value !important;
+  }
+  a.progress-#{$color},
+  button.progress-#{$color} {
+    @include hover-focus() {
+      background-color: darken($value, 10%) !important;
+    }
+  }
+}
+
+.progress-white {
+  background-color: $white !important;
+}
+
+.progress-transparent {
+  background-color: transparent !important;
+}
+
+.progress-sm {
+  height: $progress-height-sm;
+  border-radius: 0;
+
+  .progress-bar-striped {
+    @include gradient-striped(rgba($white, .35));
+  }
+}
+
+.progress-lg {
+  height: $progress-height-lg;
+}

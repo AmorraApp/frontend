@@ -1,0 +1,127 @@
+
+.root {
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: $zindex-popover;
+
+  &.top-left, &.top-center, &.top-right {
+    top: 8px;
+  }
+
+  &.bottom-left, &.bottom-center, &.bottom-right {
+    bottom: 8px;
+  }
+
+  &.top-left, &.center-left, &.bottom-left {
+    justify-content: flex-start;
+  }
+
+  &.top-right, &.center-right, &.bottom-right {
+    justify-content: flex-end;
+  }
+
+  &.center-left, &.center-center, &.center-right {
+    top: 48vh;
+  }
+
+  @include media-breakpoint-up(sm) {
+    &.top-left, &.top-center, &.top-right {
+      top: 24px;
+    }
+
+    &.bottom-left, &.bottom-center, &.bottom-right {
+      bottom: 24px;
+    }
+
+    &.top-left, &.center-left, &.bottom-left {
+      left: 24px;
+      right: auto;
+    }
+
+    &.top-right, &.center-right, &.bottom-right {
+      right: 24px;
+      left: auto;
+    }
+
+    &.top-center, &.center-center, &.bottom-center {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.content {
+  position: relative;
+  @include gradient-bg($gray-950);
+  background-color: $gray-950;
+  color: color-yiq($gray-950);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  padding: $alert-padding-y $alert-padding-x;
+  border-radius: $border-radius;
+
+  @include media-breakpoint-up(sm) {
+    flex-grow: initial;
+    min-width: 288px;
+  }
+
+  &:disabled, &.disabled {
+    opacity: $btn-disabled-opacity;
+    pointer-events: none;
+  }
+
+  .close {
+    position: absolute;
+    top: $alert-padding-y;
+    right: $alert-padding-x;
+    z-index: 2;
+    color: white;
+    text-shadow: 0 1px 0 $black;
+
+    &:not(:disabled):not(.disabled):hover {
+      cursor: pointer;
+      opacity: 0.5;
+      background: white;
+      color: rgba($black, 0.7);
+      text-shadow: 0 1px 0 $white;
+    }
+  }
+}
+
+.content-message {
+  padding: 0.25em 0;
+  flex-grow: 1;
+}
+
+.content-action {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding-left: $toast-padding-x;
+  margin-right: -$toast-padding-y;
+}
+
+
+// Colors
+//
+// Contextual variations (linked badges get darker on :hover).
+
+@each $color, $value in $theme-colors {
+  .content-#{$color} {
+    @include gradient-bg($value);
+    background-color: $value;
+    color: color-yiq($value);
+
+    .close {
+      text-shadow: 0 1px 0 $value;
+      color: inherit;
+    }
+  }
+}

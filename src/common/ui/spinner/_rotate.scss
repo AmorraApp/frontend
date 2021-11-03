@@ -1,0 +1,33 @@
+
+.spinner-rotate {
+  display: inline-block;
+  width: $spinner-size;
+  height: $spinner-size;
+  vertical-align: text-bottom;
+  animation: spinner-rotate 1s linear infinite;
+  font-size: $spinner-size;
+
+  svg {
+    @include svg(1em);
+    vertical-align: top;
+  }
+}
+
+.spinner-rotate-sm {
+  width: $spinner-size-sm;
+  height: $spinner-size-sm;
+  font-size: $spinner-size-sm;
+}
+
+.spinner-rotate-lg {
+  width: $spinner-size-lg;
+  height: $spinner-size-lg;
+  font-size: $spinner-size-lg;
+}
+
+.spinner-rotate-xl {
+  width: $spinner-size-xl;
+  height: $spinner-size-xl;
+  font-size: $spinner-size-xl;
+}
+

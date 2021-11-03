@@ -1,0 +1,153 @@
+
+.select {
+  width: 100%
+}
+
+.select-internal.select-internal {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  user-select: none;
+  color: $input-plaintext-color;
+
+  .clear {
+    flex-grow: 0;
+    outline: 0;
+    line-height: 1;
+    margin-right: $input-btn-padding-y * 0.5;
+    align-self: center;
+  }
+}
+
+.select-multiple {
+  padding-left: $input-btn-padding-y;
+  padding-top: subtract($input-btn-padding-x * 0.5, 2px);
+  padding-bottom: subtract($input-btn-padding-x * 0.5, 2px);
+}
+
+.select-native {
+  position: absolute;
+  left: 0;
+  bottom: 110%;
+  width: 100%;
+}
+
+.select-current {
+  flex: 1 1 100%;
+  position: relative;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .badge {
+    margin: 2px 0.5em 2px 0;
+  }
+}
+
+.select-placeholder {
+  display: inline-block;
+  color: $input-placeholder-color;
+
+  .select-multiple & {
+    padding-left: $input-btn-padding-x - $input-btn-padding-y;
+    padding-top: 2px;
+  }
+}
+
+.select-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  line-height: inherit;
+  font-size: inherit;
+  padding: 0 $input-btn-padding-x - $input-btn-padding-y;
+
+  .select-single & {
+    margin-left: -($input-btn-padding-x - $input-btn-padding-y);
+  }
+
+  background: $input-bg;
+  border: none;
+
+  color: $input-plaintext-color;
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $input-color;
+  }
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  &:focus {
+    color: inherit;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+  }
+
+  &.no-input {
+    display: none;
+  }
+}
+
+.group-footer {
+  height: 0.5em;
+}
+
+.group-header {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: $popover-header-bg;
+  padding: 0.4em $dropdown-item-padding-x;
+}
+
+.menu.menu {
+  max-height: max(10em, 25vh);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  cursor: default;
+  padding-right: 2.5em;
+}
+
+.check {
+  position: absolute;
+  right: 7px;
+  opacity: 0.5;
+  display: flex;
+  svg { @include svg(1.3em); }
+}
+
+
+.chevron {
+  flex: 0 0 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  svg { @include svg(1em); }
+
+
+}
+
+.select-internal:not(:disabled):not(.disabled) {
+  .chevron {
+    @include hover-focus() {
+      opacity: .75;
+      outline: none;
+    }
+  }
+}
+
+.select.show {
+  .chevron {
+    opacity: 1;
+  }
+
+  .select-internal {
+    z-index: $zindex-popover;
+  }
+}

@@ -1,0 +1,63 @@
+
+.compound {
+  padding: 0;
+
+
+  svg { @include svg(1em); }
+  svg:only-child { vertical-align: middle; }
+
+  > .form-control {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .compound-btn {
+    position: relative;
+    z-index: 2;
+    align-self: stretch;
+
+    &.compound-btn:focus,
+    &.compound-btn.focus {
+      z-index: 3;
+      box-shadow: none;
+    }
+
+    &.compound-btn-prefix,
+    &.compound-btn-postfix {
+      margin-top: -$input-border-width;
+      margin-bottom: -$input-border-width;
+    }
+
+    &.compound-btn-prefix {
+      margin-left: -$input-border-width;
+      @include border-right-radius(0);
+    }
+
+    &.compound-btn-postfix {
+      margin-right: -$input-border-width;
+      @include border-left-radius(0);
+    }
+  }
+}
+
+.compound-text {
+  padding: 0 0.5em;
+
+  + .compound-divider {
+    margin-left: 0;
+  }
+}
+
+.compound-divider {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+
+  + .compound-text {
+    margin-right: 0;
+  }
+}
+
+

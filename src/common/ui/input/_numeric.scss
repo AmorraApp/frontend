@@ -1,0 +1,59 @@
+
+
+.form-numeric {
+  position: relative;
+
+  .form-control {
+    z-index: 1;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    &.is-invalid {
+      background-position: calc(100% - 21px);
+    }
+  }
+
+  button {
+    z-index: 3;
+
+    position: absolute;
+    top: $input-border-width;
+    bottom: 50%;
+    right: $input-border-width;
+    width: 16px;
+
+    padding: 0;
+    background: transparent;
+
+    border: none;
+    border-left: $input-border-width solid $input-group-addon-border-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      color: color-yiq(darken($primary, 10%));
+      background-color: darken($primary, 10%);
+      background-image: none; // Remove the gradient for the pressed/active state
+      border-color: darken($primary, 12.5%);
+    }
+
+    svg { @include svg(12px); }
+  }
+
+  button + button {
+    top: 50%;
+    bottom: $input-border-width;
+  }
+}
+

@@ -1,0 +1,26 @@
+
+$spinner-size:    1.7rem;
+$spinner-size-sm: 1.1rem;
+$spinner-size-lg: 2.3rem;
+$spinner-size-xl: 4rem;
+
+.spinner {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+@each $color, $value in $theme-colors {
+  .spinner-#{$color} {
+    color: $value !important;
+  }
+}
+
+@keyframes spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@import "./rotate.scss";
+@import "./border.scss";
+@import "./grow.scss";
+@import "./blades.scss";
+@import "./ellipsis.scss";

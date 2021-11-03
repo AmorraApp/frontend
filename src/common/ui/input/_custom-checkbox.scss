@@ -1,0 +1,59 @@
+
+// Checkboxes
+//
+// Tweak just a few things for checkboxes.
+
+.custom-checkbox {
+  .custom-control-label::before {
+    @include border-radius($custom-checkbox-indicator-border-radius);
+  }
+
+  .custom-control-input:checked ~ .custom-control-label {
+    &::after {
+      background-image: escape-svg($custom-checkbox-indicator-icon-checked);
+    }
+  }
+
+  .custom-control-input:indeterminate ~ .custom-control-label {
+    &::before {
+      border-color: $custom-checkbox-indicator-indeterminate-border-color;
+      @include gradient-bg($custom-checkbox-indicator-indeterminate-bg);
+      @include box-shadow($custom-checkbox-indicator-indeterminate-box-shadow);
+    }
+    &::after {
+      background-image: escape-svg($custom-checkbox-indicator-icon-indeterminate);
+    }
+  }
+
+  .custom-control-input:disabled {
+    &:checked ~ .custom-control-label::before {
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
+    }
+    &:indeterminate ~ .custom-control-label::before {
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
+    }
+  }
+}
+
+// Radios
+//
+// Tweak just a few things for radios.
+
+.custom-radio {
+  .custom-control-label::before {
+    // stylelint-disable-next-line property-disallowed-list
+    border-radius: $custom-radio-indicator-border-radius;
+  }
+
+  .custom-control-input:checked ~ .custom-control-label {
+    &::after {
+      background-image: escape-svg($custom-radio-indicator-icon-checked);
+    }
+  }
+
+  .custom-control-input:disabled {
+    &:checked ~ .custom-control-label::before {
+      @include gradient-bg($custom-control-indicator-checked-disabled-bg);
+    }
+  }
+}

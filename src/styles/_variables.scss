@@ -1,0 +1,159 @@
+
+$background: #080d13;
+
+$surface-1: #131e2a;
+$surface-2: #1b2a3a;
+$surface-3: #203146;
+$surface-4: #243850;
+$surface-5: #2A405B;
+$surface-6: #2E4764;
+$surface-7: #39587b;
+
+$gray-000: #f8f9fa;
+$gray-050: #eff0f2;
+$gray-100: #e5e8ea;
+$gray-150: #d3d7db;
+$gray-200: #c9ced4;
+$gray-250: #b6bdc5;
+$gray-300: #adb5bd;
+$gray-350: #a4adb5;
+$gray-400: #919ca6;
+$gray-450: #7e8b97;
+$gray-500: #758290;
+$gray-550: #65717d;
+$gray-600: #5d6974;
+$gray-650: #4e5861;
+$gray-700: #474f58;
+$gray-750: #373e45;
+$gray-800: #30363b;
+$gray-850: #212529;
+$gray-900: #191c1f;
+$gray-950: #0a0b0c;
+$gray-999: #020303;
+
+$brand-050:  #3a005f;
+$brand-100:  #4200ba;
+$brand-200:  #5a00c2;
+$brand-250:  #4e0081;
+$brand-300:  #590092;
+$brand-350:  #6800c8;
+$brand-400:  #6c00b4;
+$brand-450:  #7600d0;
+$brand-500:  #8200d6;
+$brand-600:  #9540dd;
+$brand-700:  #ac2cff;
+$brand-750:  #b94eff;
+$brand-800:  #c196eb;
+$brand-850:  #c770ff;
+$brand-900:  #dac0f3;
+$brand-950:  #f1e5fa;
+
+$primary-300: #0071C3;
+$primary-500: #0190F8;
+$primary-700: #33A8FF;
+
+$secondary-300: #1500d6;
+$secondary-500: #5c1bea;
+$secondary-700: #b596f4;
+
+$accent-300: #a800ad;
+$accent-500: #d600c1;
+$accent-700: #e989da;
+
+$info-300: #E39808;
+$info-500: #F1AD2E;
+$info-700: #FAC661;
+
+$success-300: #198F58;
+$success-500: #20BA72;
+$success-700: #35DF90;
+
+$warning-300: #bf4d00;
+$warning-500: #d68000;
+$warning-700: #e3ab4a;
+
+$danger-100: #9f2912;
+$danger-300: #D72F10;
+$danger-500: #E84E2F;
+$danger-700: #F47961;
+
+$muted: $gray-600;
+
+$theme-colors: (
+  "brand":      $brand-500,
+  "primary":    $primary-500,
+  "secondary":  $secondary-500,
+  "success":    $success-500,
+  "info":       $info-500,
+  "warning":    $warning-500,
+  "danger":     $danger-500,
+);
+
+// Customize the light and dark text colors for use in our color contrast function.
+$color-contrast-dark:      $gray-950 !default;
+$color-contrast-light:     $gray-000 !default;
+
+
+$font-size-h1: 5.5rem;
+$font-size-h2: 4.3rem;
+$font-size-h3: 3.4rem;
+$font-size-h4: 2.4rem;
+$font-size-h5: 1.7rem;
+$font-size-h6: 1.4rem;
+$font-size-body1: 1.14rem;
+$font-size-body2: 1rem;
+$font-size-sub1: 0.85rem;
+$font-size-sub2: 0.71rem;
+$font-size-large: 1.3em;
+$font-size-small: 0.85em;
+$font-size-code: 1rem;
+
+$font-family-brand:       Lobster, Georgia, 'Times New Roman', Times, Times, serif;
+$font-family-heading:     Montserrat, Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-body:        "Open Sans", Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-monospace:   "Cousine", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-ui:          Roboto, Arial, sans-serif;
+
+$font-weight-thin:     100;
+$font-weight-lighter:  200;
+$font-weight-light:    300;
+$font-weight-regular:  400;
+$font-weight-medium:   500;
+$font-weight-semibold: 600;
+$font-weight-bold:     700;
+$font-weight-bolder:   800;
+
+$zindex-sticky:                     1020;
+$zindex-fixed:                      1030;
+$zindex-drawer:                     1200;
+$zindex-modal-backdrop:             1290;
+$zindex-modal:                      1300;
+$zindex-popover:                    1400;
+$zindex-dropdown:                   1450;
+$zindex-tooltip:                    1500;
+
+
+// Gradient
+//
+$gradient: linear-gradient(180deg, rgba(white, .15), rgba(white, 0)) !default;
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1rem;
+$spacers: (
+  -3: $spacer * .125,
+  -2: $spacer * .25,
+  -1: $spacer * .5,
+  0: $spacer,
+  1: $spacer * 1.5,
+  2: $spacer * 2,
+  3: $spacer * 3,
+);
+
+@function spacer ($size: 0) {
+  @return map-get($spacers, $size);
+}

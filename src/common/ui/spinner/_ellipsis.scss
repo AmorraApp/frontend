@@ -1,0 +1,63 @@
+
+//
+// Ellipsis Dots
+//
+
+.spinner-ellipsis {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  vertical-align: text-bottom;
+  font-size: $spinner-size;
+  width: 1em;
+  height: 0.5em;
+}
+
+.spinner-ellipsis * {
+  width: 0.1625em;
+  height: 0.1625em;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ellipsis2 .75s infinite;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
+  &:first-child {
+    // left: 10%;
+    animation: ellipsis1 .75s infinite;
+  }
+
+  &:last-child {
+    // left: 70%;
+    animation: ellipsis3 .75s infinite;
+  }
+}
+
+.spinner-ellipsis-sm {
+  font-size: $spinner-size-sm;
+}
+
+.spinner-ellipsis-lg {
+  font-size: $spinner-size-lg;
+}
+
+.spinner-ellipsis-xl {
+  font-size: $spinner-size-xl;
+}
+
+
+
+@keyframes ellipsis1 {
+  0%   { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+@keyframes ellipsis3 {
+  0%   { transform: scale(1); }
+  100% { transform: scale(0); }
+}
+
+@keyframes ellipsis2 {
+  0%   { transform: translate(-0.18461em, 0); }
+  100% { transform: translate(0.18461em, 0); }
+}

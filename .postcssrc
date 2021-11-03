@@ -1,0 +1,19 @@
+{
+  "modules": true,
+  "plugins": {
+    "postcss-modules": {
+      "generateScopedName": "_[name]__[local]"
+    },
+    "autoprefixer": {
+      "grid": true
+    },
+    "postcss-import": true,
+    "postcss-url": true,
+    "postcss-custom-properties": true,
+    "postcss-rem-to-pixel": {
+      "rootValue": 14,
+      "propList": [ "*" ],
+      "mediaQuery": true
+    }
+  }
+}

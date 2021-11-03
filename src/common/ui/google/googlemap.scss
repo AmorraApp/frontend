@@ -1,0 +1,18 @@
+
+.googlemap {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'stack';
+
+  > * {
+    grid-area: stack;
+  }
+}
+
+.mapContainer {
+  position: relative;
+  overflow: hidden;
+}
+

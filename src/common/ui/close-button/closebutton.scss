@@ -1,0 +1,99 @@
+.close {
+  font-family: $font-family-ui;
+  font-size: 20px;
+  font-weight: $close-font-weight;
+  line-height: 0.6em;
+  border-radius: 50%;
+  background-color: transparent;
+  color: $close-color;
+  text-shadow: $close-text-shadow;
+  opacity: .25;
+
+  height: 1em;
+  width: 1em;
+  flex-basis: 1em;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  // Override <a>'s hover style
+  @include hover() {
+    color: $close-color;
+    text-decoration: none;
+  }
+
+  &:not(:disabled):not(.disabled) {
+    opacity: .5;
+    @include hover-focus() {
+      opacity: .75;
+      outline: none;
+    }
+  }
+
+  span {
+    // padding-top: 0.05em;
+  }
+}
+
+// Additional properties for button version
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+
+button.close {
+  padding: 0;
+  border: 0;
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+
+.close.disabled, .close:disabled {
+  pointer-events: none;
+}
+
+.sr-only {
+  @include sr-only();
+}
+
+.close-xs {
+  font-size: 10px;
+}
+
+.close-sm {
+  font-size: 16px;
+}
+
+.close-lg {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.close-xl {
+  font-size: 34px;
+  line-height: 1;
+}
+
+// Colors
+//
+// Contextual variations (linked badges get darker on :hover).
+
+@each $color, $value in $theme-colors {
+  .close-#{$color} {
+    background-color: $value;
+    color: color-yiq($value);
+    text-shadow: 0 1px 0 darken($value, 0.5);
+
+    // Override <a>'s hover style
+    @include hover() {
+      color: color-yiq($value);
+    }
+  }
+}
+
+.close.close-outline {
+  color: white;
+  background-color: rgba(black, 0.5);
+  border: 0.1em solid white;
+  text-shadow: 0 1px 0 $gray-800;
+}
