@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Children, cloneElement, useCallback, useRef } from 'react';
-import { useTimeout } from 'common/hooks';
+import { useTimeout } from 'common/hooks/useTimers';
 
 import { useUncontrolledProp } from 'uncontrollable';
 import Overlay from './index';

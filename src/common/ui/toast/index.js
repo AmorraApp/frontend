@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useMemo, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { cl as classNames } from 'common/utils';
-import { useTimeout } from 'common/hooks';
+import { useTimeout } from 'common/hooks/useTimers';
 import Fade from '../fade';
 import ToastHeader from './ToastHeader';
 

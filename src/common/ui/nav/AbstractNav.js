@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useContext, useEffect, useRef } from 'react';
-import { useForceUpdate, useMergedRefs } from 'common/hooks';
+import useForceUpdate from 'common/hooks/useForceUpdate';
+import useMergedRefs from 'common/hooks/useMergedRefs';
+
 import { qsa } from 'common/utils';
 import NavContext from './NavContext';
 import useSelectableContext, { SelectableContextProvider } from 'common/selectable-context';

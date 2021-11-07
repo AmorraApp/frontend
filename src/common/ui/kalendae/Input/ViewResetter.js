@@ -1,5 +1,6 @@
 
-import { useRef, useTimeout } from 'common/hooks';
+import { useRef } from 'react';
+import { useTimeout } from 'common/hooks/useTimers';
 import useViewManager from '../lib/useViewManager';
 
 

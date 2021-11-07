@@ -1,6 +1,7 @@
 
 import PropTypes from 'common/prop-types';
-import { useDerivedSet, useComputedRef } from 'common/hooks';
+import { useDerivedSet } from 'common/hooks/useSet';
+import useComputedRef from 'common/hooks/useComputedRef';
 import quickContext from 'common/quickcontext';
 import { map, isObject, find, isUndefinedOrNull } from 'common/utils';
 import { useDropdownToggle } from 'common/ui/dropdown';

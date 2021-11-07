@@ -1,6 +1,6 @@
 
 import { cl, clRemap, r } from 'common/utils';
-import { useCallback } from 'common/hooks';
+import { useCallback } from 'react';
 import PropTypes from 'common/prop-types';
 import styles from './datatable.scss';
 

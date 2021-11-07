@@ -1,7 +1,7 @@
 import { cl as classNames, isUndefinedOrNull, noop } from 'common/utils';
 import PropTypes from 'common/prop-types';
 import { forwardRef, useContext, useRef } from 'react';
-import { useMergedRefs } from 'common/hooks';
+import useMergedRefs from 'common/hooks/useMergedRefs';
 
 import useDropdownContext from './useDropdownContext';
 import NavbarContext from '../navbar/NavbarContext';

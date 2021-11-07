@@ -1,6 +1,7 @@
 
 import { forwardRef, useCallback, useMemo, useState } from 'react';
-import { useDerivedState, useQuickKey } from 'common/hooks';
+import useDerivedState from 'common/hooks/useDerivedState';
+import useQuickKey from 'common/hooks/useKeyboard';
 import { all, isDate } from 'common/utils';
 import PropTypes from 'prop-types';
 import { format as formatDate, parse as parseDate, isValid as dateIsValid } from 'date-fns';

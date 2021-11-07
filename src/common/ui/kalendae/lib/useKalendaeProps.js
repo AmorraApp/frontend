@@ -25,8 +25,8 @@ import {
   MODE_RANGE,
   MODE_WEEK,
 } from './constants';
-import { useMemo, useClock } from 'common/hooks';
-
+import { useMemo } from 'react';
+import useClock from 'common/hooks/useClock';
 
 const noop = () => undefined;
 

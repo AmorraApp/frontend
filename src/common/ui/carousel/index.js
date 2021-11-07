@@ -1,10 +1,8 @@
 
-import {
-  useEventCallback,
-  useUpdateEffect,
-  useCommittedRef,
-  useTimeout,
-} from 'common/hooks';
+import useEventCallback from 'common/hooks/useEventCallback';
+import useUpdateEffect from 'common/hooks/useUpdateEffect';
+import useCommittedRef from 'common/hooks/useCommittedRef';
+import { useTimeout } from 'common/hooks/useTimers';
 import { cl as classNames } from 'common/utils';
 import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';

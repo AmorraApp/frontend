@@ -1,7 +1,9 @@
 import { cl as classNames, marshal } from 'common/utils';
 import PropTypes from 'prop-types';
 import { useState, createRef, useCallback } from 'react';
-import { useSilentState, useGettableState, useDefer } from 'common/hooks';
+import useSilentState from 'common/hooks/useSilentState';
+import useGettableState from 'common/hooks/useGettableState';
+import { useDefer } from 'common/hooks/useTimers';
 import usePopper from 'common/hooks/usePopper';
 import Kalendae from '../Kalendae';
 import { prepareKalendaeContext, KalendaeContextProvider } from '../lib/useKalendaeContext';

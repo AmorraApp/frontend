@@ -6,7 +6,7 @@ import styles from './input.scss';
 import BaseInput from './BaseInput';
 import CaretUp from 'common/svgs/solid/caret-up.svg';
 import CaretDown from 'common/svgs/solid/caret-down.svg';
-import { useDerivedState } from 'common/hooks';
+import useDerivedState from 'common/hooks/useDerivedState';
 
 const propTypes = {
   /**

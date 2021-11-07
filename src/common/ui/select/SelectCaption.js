@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback, useEffect } from 'react';
-import { usePrevious } from 'common/hooks';
+import usePrevious from 'common/hooks/usePrevious';
 import styles from './select.scss';
 import SelectBadge from './SelectBadge';
 import useSelectContext from './useSelectContext';

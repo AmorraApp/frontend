@@ -1,6 +1,7 @@
 
 import PropTypes from 'prop-types';
-import { useMemo, createContext, useContext, useDerivedState, useRef } from 'common/hooks';
+import { useMemo, createContext, useContext, useRef } from 'react';
+import useDerivedState from 'common/hooks/useDerivedState';
 
 import {
   isArray,
