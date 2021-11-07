@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useEffect, useReducer, useCallback, createContext, useContext } from 'react';
-import useUpdatedRef from './useUpdatedRef';
-
+import useUpdatedRef from 'common/hooks/useUpdatedRef';
 import { UpdateBindingProvider, bindForUpdates, useBoundUpdate } from 'common/update-binding';
 
 const IsoboundContext = createContext();
@@ -11,7 +10,7 @@ export function useIsoboundContext () {
   return useContext(IsoboundContext);
 }
 
-export function IsoboundContextProvider ({ children }) {
+export function IsoboundProvider ({ children }) {
 
   const [ flip, update ] = useReducer((state) => (state + 1) % 100, 0);
 

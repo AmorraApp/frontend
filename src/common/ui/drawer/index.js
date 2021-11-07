@@ -5,7 +5,7 @@ import { forwardRef, useCallback, useMemo } from 'react';
 import useDrawerContext, { DrawerContextProvider } from './useDrawerContext';
 import * as styles from './drawer.scss';
 import { isElement } from 'common/children';
-import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/hooks/useIsobound';
+import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/ui/isobound';
 import { v4 as uuid } from 'uuid';
 
 const VARIANTS = [

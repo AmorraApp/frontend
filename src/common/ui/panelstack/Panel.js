@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { forwardRef, createContext, useContext, useRef, useEffect } from 'react';
 import { cl as classNames } from 'common/utils';
 import useStableMemo from 'common/hooks/useStableMemo';
-import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/hooks/useIsobound';
+import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/ui/useIsobound';
 import Transition from 'common/ui/transition';
 import { v4 as uuid } from 'uuid';
 
