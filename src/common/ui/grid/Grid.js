@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import { cl, isArray, isNumber, isObject } from 'common/utils';
-import * as styles from './grid.scss';
+import styles from './grid.scss';
 import { forwardRef } from 'react';
 import { mapChildren } from 'common/children';
 

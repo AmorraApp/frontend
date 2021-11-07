@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useCallback, useRef } from 'react';
 import { cl as classNames } from 'common/utils';
 import useDerivedState from 'common/hooks/useDerivedState';
-import * as styles from './dialogs.scss';
+import styles from './dialogs.scss';
 import { Labelable, Label, TextField, TextArea, Feedback } from 'common/ui/input';
 import Dialog from './Dialog';
 import useTripWire from 'common/hooks/useTripWire';

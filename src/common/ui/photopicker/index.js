@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useCallback, useState, useRef } from 'react';
 import { cl as classNames, isArray } from 'common/utils';
 import Button from 'common/ui/button';
-import * as styles from './photopicker.scss';
+import styles from './photopicker.scss';
 import useDerivedState from 'common/hooks/useDerivedState';
 import useStableMemo from 'common/hooks/useStableMemo';
 import Image from 'common/ui/image';

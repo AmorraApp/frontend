@@ -1,7 +1,7 @@
 
 import { useCallback } from 'react';
 import Badge from 'common/ui/badge';
-import * as styles from './select.scss';
+import styles from './select.scss';
 import useSelectContext, { valuePropType } from './useSelectContext';
 
 export default function SelectBadge ({ option }) {

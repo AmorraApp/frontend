@@ -4,7 +4,7 @@ import { forwardRef, useContext } from 'react';
 import useEventCallback from 'common/hooks/useEventCallback';
 import CloseButton from '../close-button';
 import ToastContext from './ToastContext';
-import * as styles from './toast.scss';
+import styles from './toast.scss';
 import spacing from '../grid/spacing';
 
 const propTypes = {

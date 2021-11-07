@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
 import AbstractNav from '../nav/AbstractNav';
 import ListGroupItem from './ListGroupItem';
-import * as styles from './listgroup.scss';
+import styles from './listgroup.scss';
 export { styles as Classes };
 
 const propTypes = {

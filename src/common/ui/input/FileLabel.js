@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import useInputContext from './useInputContext';
-import * as styles from './input.scss';
+import styles from './input.scss';
 
 const propTypes = {
   /** The HTML for attribute for associating the label with an input */

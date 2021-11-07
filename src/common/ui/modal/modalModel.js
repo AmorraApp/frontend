@@ -1,5 +1,5 @@
 
-import * as styles from './modal.scss';
+import styles from './modal.scss';
 
 export default class Modal {
 

@@ -2,7 +2,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, Children } from 'react';
-import * as styles from './disclosure.scss';
+import styles from './disclosure.scss';
 import AngleLeft from 'common/svgs/solid/angle-left.svg';
 import AngleRight from 'common/svgs/solid/angle-right.svg';
 

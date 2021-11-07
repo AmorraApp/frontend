@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import Badge from 'common/ui/badge';
 import useViewManager from '../lib/useViewManager';
 import useSelection from '../lib/useSelection';
-import * as styles from './kalendae-input.scss';
+import styles from './kalendae-input.scss';
 import { format as formatDate } from 'date-fns';
 
 export default function KalendaeBadge ({ day, format, locale }) {

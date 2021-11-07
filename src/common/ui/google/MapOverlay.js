@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './googlemap.scss';
+import styles from './googlemap.scss';
 
 const propTypes = {
   className: PropTypes.string,

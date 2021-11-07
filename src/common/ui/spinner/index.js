@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { cl as classNames } from 'common/utils';
 import { forwardRef, Children } from 'react';
-import * as styles from './spinner.scss';
+import styles from './spinner.scss';
 
 const VARIANTS = [ 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark' ];
 const ANIMATIONS = [ 'rotate', 'border', 'grow', 'blades', 'ellipsis' ];

@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import divWithClassName from '../divWithClassName';
-import * as styles from './grid.scss';
+import styles from './grid.scss';
 import { cl, isNotUndefinedOrNull } from 'common/utils';
 import { forwardRef } from 'react';
 

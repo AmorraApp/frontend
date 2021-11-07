@@ -3,7 +3,7 @@ import { cl as classNames } from 'common/utils';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { SideNavContextProvider } from './SideNavContext';
-import * as styles from './sidenav.scss';
+import styles from './sidenav.scss';
 
 
 const propTypes = {

@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './listgroup.scss';
+import styles from './listgroup.scss';
 
 import AbstractNavItem from '../nav/AbstractNavItem';
 

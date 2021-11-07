@@ -5,7 +5,7 @@ import ModalHeader from './ModalHeader';
 import { cl as classNames, isUndefinedOrNull } from 'common/utils';
 import Fade from 'common/ui/fade';
 
-import * as styles from './modal.scss';
+import styles from './modal.scss';
 import divWithClassName from '../divWithClassName';
 const ModalBody = divWithClassName(styles['modal-body'], 'ModalBody');
 const ModalFooter = divWithClassName(styles['modal-footer'], 'ModalFooter');

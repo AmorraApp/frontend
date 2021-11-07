@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-import * as styles from './pagination.scss';
+import styles from './pagination.scss';
 
 const propTypes = {
   /**

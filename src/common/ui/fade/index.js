@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { cl } from 'common/utils';
-import * as styles from './fade.scss';
+import styles from './fade.scss';
 import { forwardRef, cloneElement, useCallback } from 'react';
 import Transition, {
   ENTERED,

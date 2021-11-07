@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types';
-import * as styles from './cell.scss';
+import styles from './cell.scss';
 import { cl } from 'common/utils';
 import { forwardRef } from 'react';
 

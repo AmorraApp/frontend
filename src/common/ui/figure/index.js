@@ -1,5 +1,5 @@
 import divWithClassName from '../divWithClassName';
-import * as styles from './figure.scss';
+import styles from './figure.scss';
 export { styles as Classes };
 import Image, { propTypes as imagePropTypes } from 'common/ui/image';
 

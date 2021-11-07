@@ -1,7 +1,7 @@
 import { cl as classNames, isString } from 'common/utils';
 import { forwardRef, useCallback, Children } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './image.scss';
+import styles from './image.scss';
 import useDerivedState from 'common/hooks/useDerivedState';
 import Ratio from 'common/ui/ratio';
 import Spinner from 'common/ui/spinner';

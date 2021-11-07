@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './table.scss';
+import styles from './table.scss';
 export { styles as Classes };
 
 const propTypes = {

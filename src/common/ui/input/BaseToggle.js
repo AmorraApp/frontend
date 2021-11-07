@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'common/prop-types';
 import { forwardRef, useRef, useEffect, useMemo } from 'react';
 import Feedback from './Feedback';
-import * as styles from './input.scss';
+import styles from './input.scss';
 import useMergedRefs from 'common/hooks/useMergedRefs';
 import useInputContext from './useInputContext';
 import { v4 as uuid } from 'uuid';

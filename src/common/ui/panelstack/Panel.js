@@ -7,7 +7,7 @@ import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/ui/
 import Transition from 'common/ui/transition';
 import { v4 as uuid } from 'uuid';
 
-import * as styles from './panelstack.scss';
+import styles from './panelstack.scss';
 // import { cl as classNames, assert } from 'common/utils';
 import useStackContext from './useStackContext';
 

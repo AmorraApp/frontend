@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'common/prop-types';
 import { forwardRef, useRef, useCallback } from 'react';
 import divWithClassName from 'common/ui/divWithClassName';
-import * as styles from './input.scss';
+import styles from './input.scss';
 import { cloneChildren } from 'common/children';
 import Control from './Control';
 import Button from 'common/ui/button';

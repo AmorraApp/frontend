@@ -3,7 +3,7 @@ import PropTypes from 'common/prop-types';
 import { forwardRef } from 'react';
 import { cl as classNames } from 'common/utils';
 
-import * as styles from './panelstack.scss';
+import styles from './panelstack.scss';
 
 const propTypes = {
   variant: PropTypes.oneOf([ 'flat', 'floating' ]),

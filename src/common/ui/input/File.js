@@ -5,7 +5,7 @@ import Feedback from './Feedback';
 import FormFileInput from './FileInput';
 import FormFileLabel from './FileLabel';
 import { InputContextProvider } from './useInputContext';
-import * as styles from './input.scss';
+import styles from './input.scss';
 
 const propTypes = {
 

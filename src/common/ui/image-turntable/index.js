@@ -1,7 +1,7 @@
 import { cl as classNames, isString, isObject, isArray, keyBy, map, threepiece } from 'common/utils';
 import { forwardRef, useRef, useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './turntable.scss';
+import styles from './turntable.scss';
 import ChevronLeft from 'common/svgs/solid/chevron-left.svg';
 import ChevronRight from 'common/svgs/solid/chevron-right.svg';
 import useStableMemo from 'common/hooks/useStableMemo';

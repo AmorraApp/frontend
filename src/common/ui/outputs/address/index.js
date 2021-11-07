@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { cl } from 'common/utils';
-import * as styles from './address.scss';
+import styles from './address.scss';
 
 export default function AddressOutput ({ className, style, address, address2, city, state, zip, zipPlus4 }) {
   return (

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { cl } from 'common/utils';
 import { forwardRef } from 'react';
-import * as styles from './badge.scss';
+import styles from './badge.scss';
 import CloseButton from '../close-button';
 
 const VARIANTS = [

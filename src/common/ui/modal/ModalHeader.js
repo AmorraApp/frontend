@@ -5,7 +5,7 @@ import useEventCallback from 'common/hooks/useEventCallback';
 
 import CloseButton from '../close-button';
 import useModalContext from './useModalContext';
-import * as styles from './modal.scss';
+import styles from './modal.scss';
 
 const propTypes = {
   bsPrefix: PropTypes.string,

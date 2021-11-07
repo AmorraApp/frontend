@@ -5,7 +5,7 @@ import { cl as classNames } from 'common/utils';
 import Button from 'common/ui/button';
 import AngleRight from 'common/svgs/solid/angle-right.svg';
 
-import * as styles from './panelstack.scss';
+import styles from './panelstack.scss';
 import useStackContext from './useStackContext';
 import { usePanelContext } from './Panel';
 

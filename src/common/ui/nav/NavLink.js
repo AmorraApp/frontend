@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import SafeAnchor from '../safe-anchor';
 import AbstractNavItem from './AbstractNavItem';
-import * as styles from './nav.scss';
+import styles from './nav.scss';
 
 const VARIANTS = [
   'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark',

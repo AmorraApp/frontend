@@ -3,7 +3,7 @@ import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import useTripWire from 'common/hooks/useTripWire';
 import useOverlayContext from 'common/ui/overlay/useOverlayContext';
-import * as styles from './popover.scss';
+import styles from './popover.scss';
 
 const PopoverContent = forwardRef(({ mountOnEnter, unmountOnExit, className, children, ...props }, ref) => {
   const { show } = useOverlayContext() || {};

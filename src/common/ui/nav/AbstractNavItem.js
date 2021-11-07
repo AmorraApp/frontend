@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, useContext } from 'react';
 import useEventCallback from 'common/hooks/useEventCallback';
-import * as styles from './nav.scss';
+import styles from './nav.scss';
 
 import NavContext from './NavContext';
 import useSelectableContext from 'common/selectable-context';

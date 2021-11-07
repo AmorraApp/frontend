@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { cl as classNames, isArray, isNumber, isFunction, passthru, isUndefinedOrNull, isNotUndefinedOrNull, clamp, range as mapRange, warning, shallowEqual } from 'common/utils';
 import { useEffect, forwardRef, useCallback, useState, useRef, Fragment } from 'react';
-import * as styles from './slider.scss';
+import styles from './slider.scss';
 import useDerivedState from 'common/hooks/useDerivedState';
 import useMemoObject from 'common/hooks/useMemoObject';
 import useMergedRefs from 'common/hooks/useMergedRefs';

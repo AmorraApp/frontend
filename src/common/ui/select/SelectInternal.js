@@ -1,7 +1,7 @@
 import { cl as classNames, sort } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback, useEffect, useRef, Fragment, useMemo } from 'react';
-import * as styles from './select.scss';
+import styles from './select.scss';
 import useSelectContext from './useSelectContext';
 import useDerivedState from 'common/hooks/useDerivedState';
 import useSilentState from 'common/hooks/useSilentState';

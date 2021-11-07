@@ -7,7 +7,7 @@ import useSelectableContext from 'common/selectable-context';
 import NavContext from '../nav/NavContext';
 import SafeAnchor from '../safe-anchor';
 
-import * as styles from './dropdown.scss';
+import styles from './dropdown.scss';
 
 const propTypes = {
   /**

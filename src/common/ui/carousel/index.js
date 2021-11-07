@@ -15,7 +15,7 @@ import divWithClassName from '../divWithClassName';
 import { map, forEach } from '../../children';
 import SafeAnchor from '../safe-anchor';
 import triggerBrowserReflow from '../triggerBrowserReflow';
-import * as styles from './carousel.scss';
+import styles from './carousel.scss';
 
 const CarouselCaption = divWithClassName(styles['carousel-caption'], 'CardBody');
 const CarouselItem = divWithClassName(styles['carousel-item'], 'CarouselItem');

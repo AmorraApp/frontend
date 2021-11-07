@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import { cl } from 'common/utils';
-import * as styles from 'common/ui/input/input.scss';
+import styles from 'common/ui/input/input.scss';
 
 const propTypes = {
   as: PropTypes.elementType,

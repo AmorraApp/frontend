@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './button.scss';
+import styles from './button.scss';
 
 const propTypes = {
 

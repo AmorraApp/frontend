@@ -1,7 +1,7 @@
 import { cl as classNames, isString, map, isObject, isArray } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './image.scss';
+import styles from './image.scss';
 import Placeholder from './Placeholder';
 import Preload from './Preload';
 

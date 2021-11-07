@@ -2,7 +2,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback, useState } from 'react';
-import * as styles from './checkbox.scss';
+import styles from './checkbox.scss';
 import useDerivedState from 'common/hooks/useDerivedState';
 
 import IndeterminateFilled from 'common/svgs/solid/minus-square.svg';

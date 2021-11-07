@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import { useUncontrolled } from 'uncontrollable';
 
-import * as styles from './nav.scss';
+import styles from './nav.scss';
 export { styles as Classes };
 
 import AbstractNav from './AbstractNav';

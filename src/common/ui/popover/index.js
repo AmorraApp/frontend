@@ -1,6 +1,6 @@
 
 import divWithClassName from '../divWithClassName';
-import * as styles from './popover.scss';
+import styles from './popover.scss';
 import Popover from './Popover';
 import PopoverContent from './PopoverContent';
 import PopoverInline from './PopoverInline';

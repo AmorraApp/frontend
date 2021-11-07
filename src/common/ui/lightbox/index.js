@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback } from 'react';
 
-import * as styles from './lightbox.scss';
+import styles from './lightbox.scss';
 import { cl as classNames, map, isObject } from 'common/utils';
 import useDerivedState from 'common/hooks/useDerivedState';
 

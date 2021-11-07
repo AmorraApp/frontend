@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './sidenav.scss';
+import styles from './sidenav.scss';
 import useSideNavContext from './SideNavContext';
 
 const propTypes = {

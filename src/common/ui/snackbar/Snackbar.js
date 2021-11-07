@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback, useState, useEffect } from 'react';
 import { cl as classNames } from 'common/utils';
-import * as styles from './snackbar.scss';
+import styles from './snackbar.scss';
 import { useTimeout } from 'common/hooks/useTimers';
 import useEventCallback from 'common/hooks/useEventCallback';
 import usePageFocus from 'common/hooks/usePageFocus';

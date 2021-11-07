@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import { forwardRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './turntable.scss';
+import styles from './turntable.scss';
 import Image from 'common/ui/image';
 import useDerivedState from 'common/hooks/useDerivedState';
 

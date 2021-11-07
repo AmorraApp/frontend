@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { cl as classNames, assert, isFunction } from 'common/utils';
 import { forwardRef, useCallback, useMemo } from 'react';
 import useDrawerContext, { DrawerContextProvider } from './useDrawerContext';
-import * as styles from './drawer.scss';
+import styles from './drawer.scss';
 import { isElement } from 'common/children';
 import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/ui/isobound';
 import { v4 as uuid } from 'uuid';

@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-import * as styles from './snackbar.scss';
+import styles from './snackbar.scss';
 import { cl as classNames } from 'common/utils';
 import CloseButton from '../close-button';
 import elevationShadow from 'common/ui/shadows';

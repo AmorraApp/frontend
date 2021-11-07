@@ -1,6 +1,6 @@
 
 import divWithClassName from '../divWithClassName';
-import * as styles from './nav.scss';
+import styles from './nav.scss';
 
 const NavItem = divWithClassName(styles['nav-item'], 'NavItem');
 

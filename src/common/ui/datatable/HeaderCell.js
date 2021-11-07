@@ -2,7 +2,7 @@
 import { cl, clRemap, r } from 'common/utils';
 import { useCallback } from 'common/hooks';
 import PropTypes from 'common/prop-types';
-import * as styles from './datatable.scss';
+import styles from './datatable.scss';
 
 const propTypes = {
   as: PropTypes.elementType,

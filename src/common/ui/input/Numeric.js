@@ -2,7 +2,7 @@
 import { forwardRef, createRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { cl, clamp, isUndefinedOrNull, isString } from 'common/utils';
-import * as styles from './input.scss';
+import styles from './input.scss';
 import BaseInput from './BaseInput';
 import CaretUp from 'common/svgs/solid/caret-up.svg';
 import CaretDown from 'common/svgs/solid/caret-down.svg';

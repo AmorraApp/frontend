@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { cl as classNames } from 'common/utils';
-import * as styles from './closebutton.scss';
+import styles from './closebutton.scss';
 
 const VARIANTS = [
   'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark',

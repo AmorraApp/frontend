@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { cl as classNames } from 'common/utils';
-import * as styles from './dialogs.scss';
+import styles from './dialogs.scss';
 import Dialog from './Dialog';
 
 

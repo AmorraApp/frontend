@@ -6,7 +6,7 @@ import { useEventCallback, usePrevious, useDerivedState, useGettableState, useMe
 import useSelectableContext, { SelectableContextProvider } from 'common/selectable-context';
 import { DropdownProvider } from './useDropdownContext';
 
-import * as styles from './dropdown.scss';
+import styles from './dropdown.scss';
 export {
   styles as Classes,
 };

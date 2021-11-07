@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import React from 'react';
 import PropTypes from 'prop-types';
 import SafeAnchor from '../safe-anchor';
-import * as styles from './button.scss';
+import styles from './button.scss';
 export { styles as Classes };
 
 export { default as ButtonGroup } from './ButtonGroup';

@@ -7,7 +7,7 @@ import Fade from 'common/ui/fade';
 import CloseButton from 'common/ui/close-button';
 import divWithClassName from 'common/ui/divWithClassName';
 import SafeAnchor from 'common/ui/safe-anchor';
-import * as styles from './alert.scss';
+import styles from './alert.scss';
 
 const AlertHeading = divWithClassName(styles['alert-heading'], 'AlertHeading', { as: 'h4' });
 const AlertLink = divWithClassName(styles['alert-link'], 'AlertLink', { as: SafeAnchor });

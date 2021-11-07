@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import Collapse from '../collapse';
 
 import { getNavbarContext } from './NavbarContext';
-import * as styles from './navbar.scss';
+import styles from './navbar.scss';
 
 const NavbarCollapse = forwardRef(({ children, ...props }, ref) => {
   const { expanded } = getNavbarContext();

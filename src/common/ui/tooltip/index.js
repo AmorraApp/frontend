@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { isRequiredForA11y } from 'common/prop-types';
-import * as styles from './tooltip.scss';
+import styles from './tooltip.scss';
 export { styles as Classes };
 
 const propTypes = {

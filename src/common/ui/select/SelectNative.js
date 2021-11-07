@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback } from 'react';
-import * as styles from './select.scss';
+import styles from './select.scss';
 import useSelectContext from './useSelectContext';
 
 const propTypes = {

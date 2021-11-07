@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import * as styles from './button.scss';
+import styles from './button.scss';
 import divWithClassName from '../divWithClassName';
 
 const propTypes = {

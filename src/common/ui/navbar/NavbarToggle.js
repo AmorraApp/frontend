@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import useEventCallback from 'common/hooks/useEventCallback';
 import NavbarContext from './NavbarContext';
-import * as styles from './navbar.scss';
+import styles from './navbar.scss';
 
 const propTypes = {
   /** @default 'navbar-toggler' */

@@ -9,7 +9,7 @@ import usePopper from 'common/hooks/usePopper';
 import useRootClose from '../useRootClose';
 import usePopperMarginModifiers from '../usePopperMarginModifiers';
 
-import * as styles from './dropdown.scss';
+import styles from './dropdown.scss';
 
 const alignDirection = PropTypes.oneOf([ 'start', 'center', 'end' ]);
 

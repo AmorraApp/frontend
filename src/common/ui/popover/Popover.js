@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
-import * as styles from './popover.scss';
+import styles from './popover.scss';
 
 const propTypes = {
 

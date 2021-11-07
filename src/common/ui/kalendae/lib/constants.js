@@ -1,5 +1,5 @@
 
-import * as styles from '../kalendae.scss';
+import styles from '../kalendae.scss';
 export const Classes = {
   root:                  styles['kalendae'], // eslint-disable-line dot-notation
   calendarGrid:          styles['k-calendar-grid'],

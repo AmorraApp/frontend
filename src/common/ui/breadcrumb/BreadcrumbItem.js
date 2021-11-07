@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import SafeAnchor from '../safe-anchor';
-import * as styles from './breadcrumb.scss';
+import styles from './breadcrumb.scss';
 
 const propTypes = {
 

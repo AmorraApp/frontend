@@ -1,6 +1,6 @@
 
 import { isObject } from 'common/utils';
-import * as styles from './col.scss';
+import styles from './col.scss';
 
 export default function className (column = 1, size = 'sm', type = 'col') {
   if (isObject(column)) {

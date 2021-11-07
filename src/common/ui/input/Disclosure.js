@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import BaseToggle from './BaseToggle';
-import * as styles from './input.scss';
+import styles from './input.scss';
 
 const Disclosure = forwardRef(({
   className,

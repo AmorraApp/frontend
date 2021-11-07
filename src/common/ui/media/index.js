@@ -1,6 +1,6 @@
 
 import divWithClassName from '../divWithClassName';
-import * as styles from './media.scss';
+import styles from './media.scss';
 export { styles as Classes };
 
 export const MediaBody = divWithClassName(styles['media-body'], 'MediaBody');

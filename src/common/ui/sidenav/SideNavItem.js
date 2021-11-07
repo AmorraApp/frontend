@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback } from 'react';
 import SafeAnchor from 'common/ui/safe-anchor';
-import * as styles from './sidenav.scss';
+import styles from './sidenav.scss';
 import Badge from 'common/ui/badge';
 import useSideNavContext from './SideNavContext';
 import { cloneChildren } from '../../children';

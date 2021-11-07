@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 
-import * as styles from './modal.scss';
+import styles from './modal.scss';
 import { cl as classNames } from 'common/utils';
 
 import { useModal } from './useModalContext';

@@ -5,7 +5,7 @@ import { qsa } from 'common/utils';
 import NavContext from './NavContext';
 import useSelectableContext, { SelectableContextProvider } from 'common/selectable-context';
 import TabContext from '../tabs/TabContext';
-import * as styles from './nav.scss';
+import styles from './nav.scss';
 
 const noop = () => { };
 const propTypes = {

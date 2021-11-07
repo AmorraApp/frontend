@@ -3,7 +3,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import SafeAnchor from '../safe-anchor';
-import * as styles from './pagination.scss';
+import styles from './pagination.scss';
 import AngleDoubleLeft from 'common/svgs/solid/angle-double-left.svg';
 import AngleDoubleRight from 'common/svgs/solid/angle-double-right.svg';
 import AngleLeft from 'common/svgs/solid/angle-left.svg';

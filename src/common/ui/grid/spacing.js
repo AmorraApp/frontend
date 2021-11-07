@@ -1,6 +1,6 @@
 
 import { isObject } from 'common/utils';
-import * as styles from './spacing.scss';
+import styles from './spacing.scss';
 
 const aliases = {
   margin: 'm',

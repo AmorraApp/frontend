@@ -10,7 +10,7 @@ import { mapChildren } from 'common/children';
 import { SelectProvider, valuePropType } from './useSelectContext';
 import Dropdown from 'common/ui/dropdown';
 import SelectInternal from './SelectInternal';
-import * as styles from './select.scss';
+import styles from './select.scss';
 
 const propTypes = {
   /**

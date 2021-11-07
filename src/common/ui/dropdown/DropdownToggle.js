@@ -6,7 +6,7 @@ import Button from '../button';
 import { v4 as uuid } from 'uuid';
 import useDropdownContext from './useDropdownContext';
 
-import * as styles from './dropdown.scss';
+import styles from './dropdown.scss';
 export {
   styles as Classes,
 };

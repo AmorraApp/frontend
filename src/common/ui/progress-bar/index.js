@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import { isValidElement, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { mapChildren } from 'common/children';
-import * as styles from './progress.scss';
+import styles from './progress.scss';
 const ROUND_PRECISION = 1000;
 
 /**

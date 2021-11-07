@@ -3,7 +3,7 @@ import PropTypes from 'common/prop-types';
 import { forwardRef, useRef } from 'react';
 import { cl as classNames } from 'common/utils';
 
-import * as styles from './panelstack.scss';
+import styles from './panelstack.scss';
 import { PanelStackProvider } from './useStackContext';
 
 const propTypes = {

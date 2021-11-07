@@ -1,7 +1,7 @@
 import { forwardRef, Children } from 'react';
 import { cl as classNames, isString, warn } from 'common/utils';
 import PropTypes from 'prop-types';
-import * as styles from './ratio.scss';
+import styles from './ratio.scss';
 
 const RATIO_REGEX = /^(\d+)[^\d\s](\d+)$/;
 

@@ -4,7 +4,7 @@ import { useDerivedState, useQuickKey } from 'common/hooks';
 import { all, isDate } from 'common/utils';
 import PropTypes from 'prop-types';
 import { format as formatDate, parse as parseDate, isValid as dateIsValid } from 'date-fns';
-import * as styles from './kalendae-input.scss';
+import styles from './kalendae-input.scss';
 import { MODE } from '../Kalendae';
 import useKalendaeContext from '../lib/useKalendaeContext';
 import useSelection, { valuesEqual } from '../lib/useSelection';

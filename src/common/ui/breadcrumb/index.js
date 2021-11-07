@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import * as styles from './breadcrumb.scss';
+import styles from './breadcrumb.scss';
 export { styles as Classes };
 
 import BreadcrumbItem from './BreadcrumbItem';

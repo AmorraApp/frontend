@@ -3,7 +3,7 @@
 export { default as useModalContext, ModalContext } from './useModalContext';
 export { default as ModalHeader } from './ModalHeader';
 
-import * as styles from './modal.scss';
+import styles from './modal.scss';
 import divWithClassName from '../divWithClassName';
 export const ModalBody = divWithClassName(styles['modal-body'], 'ModalBody');
 export const ModalFooter = divWithClassName(styles['modal-footer'], 'ModalFooter');

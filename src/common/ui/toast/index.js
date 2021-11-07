@@ -8,7 +8,7 @@ import ToastHeader from './ToastHeader';
 import ToastContext from './ToastContext';
 import divWithClassName from '../divWithClassName';
 
-import * as styles from './toast.scss';
+import styles from './toast.scss';
 export { styles as Classes };
 
 export const ToastBody = divWithClassName(styles['toast-body'], 'ToastBody');

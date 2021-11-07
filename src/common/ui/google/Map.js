@@ -6,7 +6,7 @@ import { useGoogleApi } from './ApiProvider';
 import useMemoObject from 'common/hooks/useMemoObject';
 import useMergedRefs from 'common/hooks/useMergedRefs';
 import useUpdateEffect from 'common/hooks/useUpdateEffect';
-import * as styles from './googlemap.scss';
+import styles from './googlemap.scss';
 
 import { MapContext } from './MapContext';
 

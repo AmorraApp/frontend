@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { cl as classNames } from 'common/utils';
 import SafeAnchor from 'common/ui/safe-anchor';
 
-import * as styles from './text.scss';
+import styles from './text.scss';
 
 const VARIANTS = [
   'centered',

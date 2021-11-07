@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import TabContext from './TabContext';
 import { SelectableContextProvider } from 'common/selectable-context';
 import Fade from 'common/ui/fade';
-import * as styles from 'common/ui/nav/nav.scss';
+import styles from 'common/ui/nav/nav.scss';
 
 const propTypes = {
 

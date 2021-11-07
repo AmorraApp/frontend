@@ -3,7 +3,7 @@ import PropTypes from 'common/prop-types';
 import { cl, isString, isNumber, isFunction, map, keyBy, sort, find, get } from 'common/utils';
 import { forwardRef, useState, useCallback, useMemo } from 'react';
 import { mapChildren } from 'common/children';
-import * as styles from './datatable.scss';
+import styles from './datatable.scss';
 import useDerivedState from 'common/hooks/useDerivedState';
 import useChildren from 'common/hooks/useChildren';
 import DataCell from './Cell';

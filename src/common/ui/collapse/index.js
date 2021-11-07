@@ -1,7 +1,7 @@
 import { forwardRef, Children, cloneElement, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { cl } from 'common/utils';
-import * as styles from './collapse.scss';
+import styles from './collapse.scss';
 import Transition, {
   ENTERED,
   ENTERING,

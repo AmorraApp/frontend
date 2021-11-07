@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types';
-import * as styles from './horizontal-rule.scss';
+import styles from './horizontal-rule.scss';
 import { cl } from 'common/utils';
 
 export default function HorizontalRule ({ className, ...rest }) {

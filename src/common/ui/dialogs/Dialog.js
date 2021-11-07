@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { cl as classNames } from 'common/utils';
 import Modal from 'common/ui/modal';
 import Button from 'common/ui/button';
-import * as styles from './dialogs.scss';
+import styles from './dialogs.scss';
 
 export default function BaseDialog ({
   dialogClassName,

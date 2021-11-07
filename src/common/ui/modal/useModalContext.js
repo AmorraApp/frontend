@@ -10,7 +10,7 @@ import useIsTransitioning from 'common/hooks/useIsTransitioning';
 import useWhenElementRefReady from 'common/hooks/useWhenElementRefReady';
 import useForceUpdate from 'common/hooks/useForceUpdate';
 
-import * as styles from './modal.scss';
+import styles from './modal.scss';
 import { cl as classNames } from 'common/utils';
 import { BodyMount } from 'common/ui/mount';
 import Fade from 'common/ui/fade';

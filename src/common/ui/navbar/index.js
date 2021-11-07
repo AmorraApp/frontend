@@ -3,7 +3,7 @@ import { forwardRef, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useUncontrolled } from 'uncontrollable';
 import divWithClassName from '../divWithClassName';
-import * as styles from './navbar.scss';
+import styles from './navbar.scss';
 export { styles as Classes };
 
 import NavbarBrand from './NavbarBrand';

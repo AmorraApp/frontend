@@ -3,7 +3,7 @@ import PropTypes from 'common/prop-types';
 import { forwardRef, useCallback } from 'react';
 import Feedback from './Feedback';
 import useInputContext from './useInputContext';
-import * as styles from './input.scss';
+import styles from './input.scss';
 import useFocus from 'common/ui/focus';
 import useMergedRefs from 'common/hooks/useMergedRefs';
 

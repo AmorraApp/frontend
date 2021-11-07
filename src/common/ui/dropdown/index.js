@@ -11,7 +11,7 @@ import DropdownMenu from './DropdownMenu';
 import DropdownToggle, { useDropdownToggle } from './DropdownToggle';
 import useDropdownContext from './useDropdownContext';
 
-import * as styles from './dropdown.scss';
+import styles from './dropdown.scss';
 export {
   styles as Classes,
 };
