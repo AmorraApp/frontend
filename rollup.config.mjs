@@ -2,6 +2,7 @@
 
 import path from 'path';
 import { promises as fs } from 'fs';
+// import analyzer from 'rollup-plugin-analyzer';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
@@ -9,10 +10,13 @@ import replace from '@rollup/plugin-replace';
 import babel from 'rollup-plugin-babel';
 import svg from 'rollup-plugin-react-svg';
 import json from '@rollup/plugin-json';
-import postcss from './rollup/postcss.mjs';
+import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import sizes from 'rollup-plugin-sizes';
 import rem2px from 'postcss-rem-to-pixel';
+import postcssImport from 'postcss-import';
+import postcssUrl from 'postcss-url';
+import dotenv from './dotenv.mjs';
 
 import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
@@ -32,49 +36,52 @@ function resolve (...args) {
     }
   }
   const fpath = args.shift();
-  if (!fpath) return __dirname;
-  return path.resolve(__dirname, fpath, ...args);
+  if (!fpath) return path.resolve(__dirname, 'src');
+  return path.resolve(__dirname, 'src', fpath, ...args);
 }
 
 const PROD = process.env.NODE_ENV === 'production';
 
-/*
-  PLACE NEW REACT APPLICATIONS HERE
- */
-const entries = {
-  'autoqc-checklist-tab': 'autoqc-checklist-tab/entry.js',
-  showroom: 'showroom/entry.js',
-  autoqceditor: 'autoqceditor/entry.js',
-  propscan: 'propscan/entry.js',
-};
-
-/*
-  PLACE DEVELOPMENT ONLY APPLICATIONS HERE
-  These entries will not be included in a default build.
- */
-const targetedEntries = {
-  kalendae: 'kalendae/entry.js',
-  testbed: 'testbed/entry.js',
-  laminar: 'laminar/entry.js',
-};
-
-let input = entries;
-if (process.env.BUILD_TARGET) {
-  const buildTarget = entries[process.env.BUILD_TARGET] || targetedEntries[process.env.BUILD_TARGET];
-  if (!buildTarget) throw new Error(`Unknown build target: "${process.env.BUILD_TARGET}"`);
-  input = {
-    [process.env.BUILD_TARGET]: buildTarget,
-  };
+function pcss () {
+  return postcss({
+    extract: false,
+    inject: true,
+    modules: true,
+    minimize: PROD,
+    autoModules: false,
+    use: [ 'sass', [ 'prepend', { files: [ resolve('styles/index.scss') ] } ] ],
+    plugins: [
+      postcssUrl(),
+      postcssImport(),
+      rem2px({
+        rootValue: 14,
+        propList: [ '*' ],
+        mediaQuery: true,
+      }),
+    ],
+    loaders: [
+      {
+        name: 'prepend',
+        test: /\.(scss)$/,
+        async process ({ code }) {
+          const { files = [] } = this.options;
+          const contents = await Promise.all(files.map((f) => fs.readFile(f), { encoding: 'utf8' }));
+          contents.push(code);
+          return { code: contents.join('\n\n'), map: undefined };
+        },
+      },
+    ],
+  });
 }
 
-
 const plugins = [
-  // analyze(),
+  // analyzer(),
   sizes({ ignoreEmpty: true, details: false }),
   alias({
     entries: [
       { find: 'common', replacement: resolve('common') },
       { find: 'vm', replacement: resolve('common/fills/null') },
+      { find: '@aws-sdk/client-cloudwatch-logs', replacement: resolve('common/fills/cloudwatch-logs') },
       { find: 'object-assign', replacement: resolve('common/fills/object-assign.cjs') },
       { find: '@restart/hooks', replacement: resolve('common/hooks') },
       { find: 'handybars', replacement: resolve('handybars/src/index.js') }, // eslint-disable-line node/no-extraneous-require
@@ -84,15 +91,16 @@ const plugins = [
   replace({
     preventAssignment: true,
     values: {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       '__ENV_PROD__': JSON.stringify(process.env.NODE_ENV === 'production'),
       '__ENV_DEV__': JSON.stringify(process.env.NODE_ENV !== 'production'),
+      ...dotenv(),
     },
   }),
-  // insert postcss here
+  dotenv(),
+  pcss(),
   json(),
   svg(),
-  nodeResolve({ browser: true, extensions: [ '.mjs', '.js', '.json', '.jsx' ] }),
+  nodeResolve({ browser: true, preferBuiltins: false, extensions: [ '.mjs', '.js', '.json', '.jsx' ] }),
   commonjs({
     include: 'node_modules/**',
     sourceMap: false,
@@ -118,90 +126,56 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-// const moduleMatch = /node_modules\/([^/]+)\//;
+const moduleMatch = /node_modules\/([^/]+)\//;
 
-const base = {
+const config = {
   onwarn: (warning) => {
     // Skip certain warnings
 
     // should intercept ... but doesn't in some rollup versions
     if ( warning.code === 'THIS_IS_UNDEFINED' ) { return; }
 
+    const ignoredCircular = [
+      '@aws-amplify/core',
+    ];
+
+    if (warning.code === 'CIRCULAR_DEPENDENCY' && ignoredCircular.some((d) => warning.importer.includes(d))) {
+      return;
+    }
+
     // console.warn everything else
     console.warn( warning.message ); // eslint-disable-line no-console
   },
-  // manualChunks: (id) => {
-  //   const [ , nodeModule ] = id.match(moduleMatch) || [];
-  //   if (nodeModule) {
-  //     if (nodeModule.includes('react-select') || nodeModule.includes('@emotion')) return 'react-select';
-  //     if (nodeModule.includes('mobx')) return 'react';
-  //     if (
-  //       nodeModule.includes('react-beautiful-dnd')
-  //       || nodeModule.includes('css-box-model')
-  //       || nodeModule.includes('use-memo-one')
-  //       || nodeModule.includes('raf-schd')
-  //     ) return 'dnd';
-  //     if (nodeModule.includes('react') || nodeModule.includes('redux') || nodeModule.includes('prop-types')) return 'react';
-  //     return 'vendor';
-  //   }
-  //   // if (id.includes('react/common/')) return 'common';
-  // },
-};
-
-function pcss () {
-  return postcss({
-    extract: true,
-    // onExtract: (fn) => console.log(fn()),
-    inject: false,
-    modules: true,
-    minimize: PROD,
-    autoModules: false,
-    use: [ 'sass', [ 'prepend', { files: [ resolve('styles.scss') ] } ] ],
-    plugins: [
-      rem2px({
-        rootValue: 14,
-        propList: [ '*' ],
-        mediaQuery: true,
-      }),
-    ],
-    loaders: [
-      {
-        name: 'prepend',
-        test: /\.(scss)$/,
-        async process ({ code }) {
-          const { files = [] } = this.options;
-          const contents = await Promise.all(files.map((f) => fs.readFile(f), { encoding: 'utf8' }));
-          contents.push(code);
-          return { code: contents.join('\n\n'), map: undefined };
-        },
-      },
-    ],
-  });
-}
-
-const config = [];
-
-for (const [ outputName, inputPath ] of Object.entries(input)) {
-  const build = {
-    ...base,
-    plugins: [ ...plugins.slice(0, 3), pcss(), ...plugins.slice(3) ],
-    input: [ inputPath, 'base.scss' ],
-    output: [
-      {
-        dir: '../public/react',
-        format: 'esm',
-        sourcemap: !PROD,
-        entryFileNames: outputName + ".js",
-        chunkFileNames: "[name].js",
-      },
-    ],
-    treeshake: PROD,
-    watch: {
-      exclude: 'node_modules/**',
+  manualChunks: (id) => {
+    const [ , nodeModule ] = id.match(moduleMatch) || [];
+    if (nodeModule) {
+      if (nodeModule.includes('@aws') || nodeModule.includes('aws-amplify')) return 'aws';
+      if (nodeModule.includes('mobx')) return 'react';
+      if (
+        nodeModule.includes('react')
+        || nodeModule.includes('prop-types')
+        || nodeModule.includes('history')
+      ) return 'react';
+      return 'vendor';
+    }
+    // if (id.includes('react/common/')) return 'common';
+  },
+  plugins,
+  input: './src/index.js',
+  preserveEntrySignatures: false,
+  output: [
+    {
+      dir: 'dist',
+      format: 'esm',
+      sourcemap: !PROD,
+      // entryFileNames: ".js",
+      // chunkFileNames: "[name].js",
     },
-  };
-
-  config.push(build);
-}
+  ],
+  treeshake: true,
+  watch: {
+    exclude: 'node_modules/**',
+  },
+};
 
 export default config;

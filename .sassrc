@@ -1,6 +1,0 @@
-{
-  data: '@import "~/src/styles/index.scss";',
-  "includePaths": [
-    "node_modules"
-  ]
-}
