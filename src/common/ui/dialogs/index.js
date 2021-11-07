@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import Confirm from './Confirm';
 import Prompt from './Prompt';
-import { useOrphanage } from 'common/mount';
+import { useOrphanage } from 'common/ui/mount';
 
 function makePrompt (createOrphan, DialogComponent) {
   return useCallback(({ onSubmit, onCancel, ...props }) => {

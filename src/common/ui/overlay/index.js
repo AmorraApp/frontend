@@ -6,7 +6,7 @@ import usePopper from 'common/hooks/usePopper';
 import useMergedRefs from 'common/hooks/useMergedRefs';
 import useRootClose from '../useRootClose';
 import Fade from '../fade';
-import { BodyMount } from 'common/mount';
+import { BodyMount } from 'common/ui/mount';
 import { OverlayProvider } from './useOverlayContext';
 
 const propTypes = {

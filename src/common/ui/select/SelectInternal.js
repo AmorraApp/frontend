@@ -14,7 +14,7 @@ import { DropdownMenu, DropdownItem, DropdownHeader, useDropdownContext } from '
 import CloseButton from 'common/ui/close-button';
 import Check from 'common/svgs/regular/check-circle.svg';
 import useFocus from 'common/ui/focus';
-import { BodyMount } from 'common/mount';
+import { BodyMount } from 'common/ui/mount';
 
 const propTypes = {
   selectProps: PropTypes.object,

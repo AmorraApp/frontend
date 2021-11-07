@@ -1,7 +1,7 @@
 
 import { useState, useCallback } from 'react';
 import Snackbar from './Snackbar';
-import { useOrphanage } from 'common/mount';
+import { useOrphanage } from 'common/ui/mount';
 
 export default function useSnackbar () {
   const { createOrphan } = useOrphanage();
