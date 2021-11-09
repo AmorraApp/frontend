@@ -1,68 +1,13 @@
 import PropTypes from 'prop-types';
-import { useRef, useEffect, useCallback, forwardRef, createContext, useContext, cloneElement } from 'react';
+import { useRef, useEffect, useReducer, useCallback, forwardRef, cloneElement } from 'react';
 import { createPortal } from 'react-dom';
 import useWillUnmount from 'common/hooks/useWillUnmount';
 import useForceUpdate from 'common/hooks/useForceUpdate';
 import { map, isFunction } from 'common/utils';
 import useComputedRef from 'common/hooks/useComputedRef';
 
-export const MountContext = createContext(null);
-MountContext.displayName = 'MountContext';
-
-
-export function MountProvider ({ children }) {
-  const manager = useComputedRef(() => new BodyMountManager);
-  const orphanage = useComputedRef(() => new Map);
-
-  const attachOrphan = useCallback((bindKey, binding) => {
-    orphanage.set(bindKey, binding);
-    orphanage.update();
-  });
-
-  const detatchOrphan = useCallback((bindKey) => {
-    orphanage.delete(bindKey);
-    orphanage.uupdate();
-  });
-
-  return (
-    <MountContext.Provider value={{ manager, orphanage, attachOrphan, detatchOrphan }}>
-      {children}
-      <Orphanage orphanage={orphanage} />
-    </MountContext.Provider>
-  );
-}
-
-
-function Orphanage ({ orphanage }) {
-  orphanage.update = useForceUpdate();
-
-  if (!orphanage.size) return null;
-
-  return map(orphanage, (Component, k, i) => {
-    if (isFunction(Component)) return <Component key={i} />;
-    return cloneElement(Component, { key: i });
-  });
-}
-Orphanage.propTypes = {
-  orphanage: PropTypes.instanceOf(Map),
-};
-
-
-export const BodyMount = forwardRef(({ children, source }, ref) => {
-  const { manager } = useContext(MountContext);
-  const mountRef = useComputedRef(() => manager.attach({ ref, source }));
-  const [ mountPoint, dispose ] = mountRef.current;
-
-  useWillUnmount(dispose);
-
-  return createPortal(<>{children}</>, mountPoint);
-});
-BodyMount.displayName = 'BodyMount';
-BodyMount.propTypes = {
-  source: PropTypes.string,
-};
-
-class BodyMountManager {
+const orphanage = new Map();
+export const BodyMountManager = new (class {
 
   constructor () {
     this.mounts = new Set;
@@ -97,39 +42,68 @@ class BodyMountManager {
     if (!this.mounts.size) document.body.removeChild(this.parentNode);
   }
 
+  attachOrphan (bindKey, binding) {
+    orphanage.set(bindKey, binding);
+    orphanage.update();
+  }
+
+  detatchOrphan (bindKey) {
+    orphanage.delete(bindKey);
+    orphanage.update();
+  }
+
+});
+
+export function Orphanage () {
+  orphanage.update = useForceUpdate();
+
+  if (!orphanage.size) return null;
+
+  return map(orphanage, (Component, k, i) => {
+    if (isFunction(Component)) return <Component key={i} />;
+    return cloneElement(Component, { key: i });
+  });
 }
 
-export function useOrphanage () {
-  const { orphans } = useContext(MountContext);
 
-  return {
-    createOrphan (orphan) {
-      const id = Symbol('Orphan');
-      orphans.set(id, orphan);
-      orphans.updated && orphans.updated();
-      return () => {
-        orphans.delete(id);
-        orphans.updated && orphans.updated();
-      };
-    },
-  };
-}
+export const BodyMount = forwardRef(({ children, source }, ref) => {
+  const mountRef = useComputedRef(() => BodyMountManager.attach({ ref, source }));
+  const [ mountPoint, dispose ] = mountRef.current;
+
+  useWillUnmount(dispose);
+
+  return createPortal(<>{children}</>, mountPoint);
+});
+BodyMount.displayName = 'BodyMount';
+BodyMount.propTypes = {
+  source: PropTypes.string,
+};
+
 
 export function useOrphan (body) {
-  const { orphans } = useContext(MountContext);
+  const triggerRef = useRef();
   const bodyRef = useRef(body);
-  bodyRef.current = body;
+  if (bodyRef.current !== body) {
+    bodyRef.current = body;
+    triggerRef.current?.();
+  }
 
-  const Orphan = useCallback(() => bodyRef.current);
+  const Orphan = useCallback(() => {
+    const [ , update ] = useReducer((state) => (state + 1) % 100, 0);
+    triggerRef.current = update;
+    return bodyRef.current;
+  });
 
-  useEffect(() => {
-    const id = Symbol('Orphan');
-    orphans.set(id, Orphan);
-    orphans.updated && orphans.updated();
-    return () => {
-      orphans.delete(id);
-      orphans.updated && orphans.updated();
-    };
-  }, []);
+  useEffect(() => createOrphan(<Orphan />), []);
 
+}
+
+export function createOrphan (element) {
+  const id = Symbol('Orphan');
+  orphanage.set(id, element);
+  orphanage.updated && orphanage.updated();
+  return () => {
+    orphanage.delete(id);
+    orphanage.updated && orphanage.updated();
+  };
 }
