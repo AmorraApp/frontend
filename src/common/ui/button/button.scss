@@ -1,117 +1,7 @@
-// Button variants
-//
-// Easily pump out default styles, as well as :hover, :focus, :active,
-// and disabled options for all buttons
 
-@mixin button-variant($background, $border, $text: color-yiq($background), $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
-  color: $text;
-  @include gradient-bg($background);
-  border-color: $border;
-  @include box-shadow($btn-box-shadow);
-
-  &:not(.inactive) {
-    @include hover() {
-      color: color-yiq($hover-background);
-      @include gradient-bg($hover-background);
-      border-color: $hover-border;
-    }
-
-    &:focus,
-    &.focus {
-      color: color-yiq($hover-background);
-      @include gradient-bg($hover-background);
-      border-color: $hover-border;
-      @if $enable-shadows {
-        @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5));
-      } @else {
-        // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
-      }
-    }
-  }
-
-  // Disabled comes first so active can properly restyle
-  &.disabled,
-  &:disabled {
-    color: color-yiq($background);
-    background-color: $background;
-    border-color: $border;
-    // Remove CSS gradients if they're enabled
-    @if $enable-gradients {
-      background-image: none;
-    }
-  }
-
-  &:not(:disabled):not(.disabled):active,
-  &:not(:disabled):not(.disabled).active,
-  .show > &.dropdown-toggle {
-    color: color-yiq($active-background);
-    background-color: $active-background;
-    @if $enable-gradients {
-      background-image: none; // Remove the gradient for the pressed/active state
-    }
-    border-color: $active-border;
-
-    &:focus {
-      @if $enable-shadows and $btn-active-box-shadow != none {
-        @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5));
-      } @else {
-        // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
-      }
-    }
-  }
-}
-
-@mixin button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color) {
-  color: $color;
-  border-color: $color;
-
-  &:not(.inactive) {
-    @include hover() {
-      color: $color-hover;
-      background-color: $active-background;
-      border-color: $active-border;
-    }
-
-    &:focus,
-    &.focus {
-      box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
-    }
-  }
-
-  &.disabled,
-  &:disabled {
-    color: $color;
-    background-color: transparent;
-  }
-
-  &:not(:disabled):not(.disabled):active,
-  &:not(:disabled):not(.disabled).active,
-  .show > &.dropdown-toggle {
-    color: color-yiq($active-background);
-    background-color: $active-background;
-    border-color: $active-border;
-
-    &:focus {
-      @if $enable-shadows and $btn-active-box-shadow != none {
-        @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, .5));
-      } @else {
-        // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
-      }
-    }
-  }
-}
-
-// Button sizes
-@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
-  padding: $padding-y $padding-x;
-  @include font-size($font-size);
-  line-height: $line-height;
-  // Manually declare to provide an override to the browser default
-  @include border-radius($border-radius, 0);
-}
+@import "./variables";
+@import "./mixins";
+@import "../control/variables";
 
 //
 // Base styles
@@ -119,7 +9,7 @@
 
 .btn {
   display: inline-block;
-  font-family: $font-family-base;
+  font-family: $font-family-ui;
   font-weight: $btn-font-weight;
   color: $body-color;
   text-align: center;
@@ -133,7 +23,7 @@
   @include transition($btn-transition);
 
   &:not(.inactive) {
-    @include hover() {
+    &:hover {
       color: $body-color;
       text-decoration: none;
     }
@@ -153,7 +43,7 @@
   }
 
   &:not(:disabled):not(.disabled) {
-    cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+    cursor: pointer;
 
     &:active,
     &.active {
@@ -196,11 +86,11 @@ fieldset:disabled a.btn {
 
 // Make a button look and behave like a link
 .btn-link {
-  font-weight: $font-weight-normal;
+  font-weight: $font-weight-regular;
   color: $link-color;
   text-decoration: $link-decoration;
 
-  @include hover() {
+  &:hover {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
@@ -225,11 +115,11 @@ fieldset:disabled a.btn {
 //
 
 .btn-lg {
-  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $line-height-large, $border-radius-lg);
 }
 
 .btn-sm {
-  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $line-height-small, $border-radius-sm);
 }
 
 
@@ -269,33 +159,6 @@ fieldset:disabled a.btn {
 }
 
 
-
-
-//
-// Block button
-//
-
-.btn-block {
-  display: block;
-  width: 100%;
-
-  // Vertically space out multiple block buttons
-  + .btn-block {
-    margin-top: $btn-block-spacing-y;
-  }
-}
-
-// Specificity overrides
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-  &.btn-block {
-    width: 100%;
-  }
-}
-
-
-
 .btn-input {
   @include button-variant($input-bg, $input-border-color, $input-color);
 }
@@ -315,7 +178,7 @@ input[type="button"] {
 
     // Bring the hover, focused, and "active" buttons to the front to overlay
     // the borders properly
-    @include hover() {
+    &:hover {
       z-index: 1;
     }
     &:focus,

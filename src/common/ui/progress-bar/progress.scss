@@ -59,7 +59,7 @@ $progress-bar-animation-timing: 0.5s linear infinite;
   }
   a.progress-#{$color},
   button.progress-#{$color} {
-    @include hover-focus() {
+    &:hover, &:focus {
       background-color: darken($value, 10%) !important;
     }
   }
@@ -71,14 +71,14 @@ $progress-bar-animation-timing: 0.5s linear infinite;
   }
   a.progress-#{$color},
   button.progress-#{$color} {
-    @include hover-focus() {
+    &:hover, &:focus {
       background-color: darken($value, 10%) !important;
     }
   }
 }
 
 .progress-white {
-  background-color: $white !important;
+  background-color: white !important;
 }
 
 .progress-transparent {
@@ -90,7 +90,7 @@ $progress-bar-animation-timing: 0.5s linear infinite;
   border-radius: 0;
 
   .progress-bar-striped {
-    @include gradient-striped(rgba($white, .35));
+    @include gradient-striped(rgba(white, .35));
   }
 }
 

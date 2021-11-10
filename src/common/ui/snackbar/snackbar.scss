@@ -59,7 +59,7 @@
   position: relative;
   @include gradient-bg($gray-950);
   background-color: $gray-950;
-  color: color-yiq($gray-950);
+  color: color-contrast($gray-950);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -83,14 +83,14 @@
     right: $alert-padding-x;
     z-index: 2;
     color: white;
-    text-shadow: 0 1px 0 $black;
+    text-shadow: 0 1px 0 black;
 
     &:not(:disabled):not(.disabled):hover {
       cursor: pointer;
       opacity: 0.5;
       background: white;
-      color: rgba($black, 0.7);
-      text-shadow: 0 1px 0 $white;
+      color: rgba(black, 0.7);
+      text-shadow: 0 1px 0 white;
     }
   }
 }
@@ -117,7 +117,7 @@
   .content-#{$color} {
     @include gradient-bg($value);
     background-color: $value;
-    color: color-yiq($value);
+    color: color-contrast($value);
 
     .close {
       text-shadow: 0 1px 0 $value;

@@ -3,16 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SafeAnchor from '../safe-anchor';
 import styles from './button.scss';
+import VARS from 'common/ui/variants';
 export { styles as Classes };
 
 export { default as ButtonGroup } from './ButtonGroup';
 export { default as ButtonToolbar } from './ButtonToolbar';
 
 const VARIANTS = [
-  'input', 'brand', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark', 'light', 'link',
-  'grade-a', 'grade-b', 'grade-c', 'grade-d', 'grade-f',
-  'outline-primary', 'outline-secondary', 'outline-success', 'outline-danger', 'outline-warning', 'outline-info', 'outline-dark', 'outline-light',
-  'outline-grade-a', 'outline-grade-b', 'outline-grade-c', 'outline-grade-d', 'outline-grade-f',
+  ...VARS,
+  ...VARS.map((v) => `outline-${v}`),
 ];
 
 const propTypes = {
@@ -41,9 +40,6 @@ const propTypes = {
      * @type ('sm'|'lg')
      */
   size: PropTypes.string,
-
-  /** Spans the full width of the Button parent */
-  block: PropTypes.bool,
 
   /** Manually set the visual state of the button to `:active` */
   active: PropTypes.bool,
@@ -84,7 +80,6 @@ const Button = React.forwardRef(
     active,
     inactive,
     className,
-    block,
     gutterless,
     type,
     as,

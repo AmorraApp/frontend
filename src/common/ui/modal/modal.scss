@@ -1,3 +1,6 @@
+
+@import './variables';
+
 // .open      - body class for killing the scroll
 // .modal     - container to scroll within
 // .dialog    - positioning shell for the actual modal
@@ -167,7 +170,7 @@
   @include border-top-radius($modal-content-inner-border-radius);
 
   color: $body-color;
-  font-family: $font-family-base;
+  font-family: $font-family-ui;
 
   .close {
     padding: $modal-header-padding;

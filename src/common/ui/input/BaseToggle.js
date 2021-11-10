@@ -9,7 +9,6 @@ import { v4 as uuid } from 'uuid';
 
 const VARIANTS = [
   'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark',
-  'brand', 'grade-a', 'grade-b', 'grade-c', 'grade-d', 'grade-f',
 ];
 
 const propTypes = {

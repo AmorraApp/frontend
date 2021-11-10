@@ -79,8 +79,18 @@ $danger-700: #F47961;
 
 $muted: $gray-600;
 
+$brand:     $brand-500;
+$primary:   $primary-500;
+$secondary: $secondary-500;
+$success:   $success-500;
+$info:      $info-500;
+$warning:   $warning-500;
+$danger:    $danger-500;
+$accent:    $accent-500;
+
 $theme-colors: (
   "brand":      $brand-500,
+  "accent":     $accent-500,
   "primary":    $primary-500,
   "secondary":  $secondary-500,
   "success":    $success-500,
@@ -89,11 +99,17 @@ $theme-colors: (
   "danger":     $danger-500,
 );
 
+$body-color: $gray-950;
+
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+$min-contrast-ratio:   4.5 !default;
+
 // Customize the light and dark text colors for use in our color contrast function.
-$color-contrast-dark:      $gray-950 !default;
-$color-contrast-light:     $gray-000 !default;
+$color-contrast-dark:      $gray-950;
+$color-contrast-light:     $gray-000;
 
-
+$font-size-root: 14px;
 $font-size-h1: 5.5rem;
 $font-size-h2: 4.3rem;
 $font-size-h3: 3.4rem;
@@ -107,6 +123,7 @@ $font-size-sub2: 0.71rem;
 $font-size-large: 1.3em;
 $font-size-small: 0.85em;
 $font-size-code: 1rem;
+$font-size-sub-sup: .75em;
 
 $font-family-brand:       Lobster, Georgia, 'Times New Roman', Times, Times, serif;
 $font-family-heading:     Montserrat, Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -123,6 +140,10 @@ $font-weight-semibold: 600;
 $font-weight-bold:     700;
 $font-weight-bolder:   800;
 
+$line-height-small:    1.25;
+$line-height-regular:  1.5;
+$line-height-large:    2;
+
 $zindex-sticky:                     1020;
 $zindex-fixed:                      1030;
 $zindex-drawer:                     1200;
@@ -131,6 +152,41 @@ $zindex-modal:                      1300;
 $zindex-popover:                    1400;
 $zindex-dropdown:                   1450;
 $zindex-tooltip:                    1500;
+
+$link-color:                              $primary !default;
+$link-decoration:                         underline !default;
+$link-shade-percentage:                   20% !default;
+$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration:                   null !default;
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom:   1rem !default;
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
 
 
 // Gradient
@@ -157,3 +213,91 @@ $spacers: (
 @function spacer ($size: 0) {
   @return map-get($spacers, $size);
 }
+
+$border-color:                $gray-300 !default;
+$border-width:                1px !default;
+
+$border-radius:               .25rem !default;
+$border-radius-sm:            .2rem !default;
+$border-radius-lg:            .3rem !default;
+$border-radius-pill:          50rem !default;
+
+$component-active-color:      white !default;
+$component-active-bg:         $primary !default;
+
+$caret-width:                 .3em !default;
+$caret-vertical-align:        $caret-width * .85 !default;
+$caret-spacing:               $caret-width * .85 !default;
+
+$transition-base:             all .2s ease-in-out !default;
+$transition-fade:             opacity .15s linear !default;
+
+$transition-collapse:         height .35s ease !default;
+$transition-collapse-width:   width .35s ease !default;
+
+$box-shadow:                  0 .5rem 1rem rgba(black, .15) !default;
+$box-shadow-sm:               0 .125rem .25rem rgba(black, .075) !default;
+$box-shadow-lg:               0 1rem 3rem rgba(black, .175) !default;
+$box-shadow-inset:            inset 0 1px 2px rgba(black, .075) !default;
+
+$hr-margin-y:                 $spacer !default;
+$hr-color:                    inherit !default;
+$hr-height:                   $border-width !default;
+$hr-opacity:                  .25 !default;
+
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+// scss-docs-start table-variables
+$table-cell-padding-y:        .5rem !default;
+$table-cell-padding-x:        .5rem !default;
+$table-cell-padding-y-sm:     .25rem !default;
+$table-cell-padding-x-sm:     .25rem !default;
+
+$table-cell-vertical-align:   top !default;
+
+$table-color:                 $body-color !default;
+$table-bg:                    transparent !default;
+$table-accent-bg:             transparent !default;
+
+$table-th-font-weight:        null !default;
+
+$table-striped-color:         $table-color !default;
+$table-striped-bg-factor:     .05 !default;
+$table-striped-bg:            rgba(black, $table-striped-bg-factor) !default;
+
+$table-active-color:          $table-color !default;
+$table-active-bg-factor:      .1 !default;
+$table-active-bg:             rgba(black, $table-active-bg-factor) !default;
+
+$table-hover-color:           $table-color !default;
+$table-hover-bg-factor:       .075 !default;
+$table-hover-bg:              rgba(black, $table-hover-bg-factor) !default;
+
+$table-border-factor:         .1 !default;
+$table-border-width:          $border-width !default;
+$table-border-color:          $border-color !default;
+
+$table-striped-order:         odd !default;
+
+$table-group-separator-color: currentColor !default;
+
+$table-caption-color:         $muted !default;
+
+$table-bg-scale:              -80% !default;
+// scss-docs-end table-variables
+
+// scss-docs-start table-loop
+$table-variants: (
+  "brand":      shift-color($brand, $table-bg-scale),
+  "accent":     shift-color($accent, $table-bg-scale),
+  "primary":    shift-color($primary, $table-bg-scale),
+  "secondary":  shift-color($secondary, $table-bg-scale),
+  "success":    shift-color($success, $table-bg-scale),
+  "info":       shift-color($info, $table-bg-scale),
+  "warning":    shift-color($warning, $table-bg-scale),
+  "danger":     shift-color($danger, $table-bg-scale),
+) !default;
+// scss-docs-end table-loop

@@ -7,6 +7,7 @@ import SafeAnchor from 'common/ui/safe-anchor';
 import styles from './text.scss';
 
 const VARIANTS = [
+  'label',
   'centered',
   'monospace',
   'wrap',
@@ -26,6 +27,7 @@ const VARIANTS = [
   'heading',
   'primary', 'secondary', 'success', 'danger', 'warning', 'info',
   'heading', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'valid', 'invalid',
 ];
 const variantProp = PropTypes.oneOf(VARIANTS);
 const VNAMES = new Set(VARIANTS);
@@ -40,6 +42,8 @@ const propTypes = {
    * The underlying HTML element to use when rendering the text.
    */
   as: PropTypes.elementType,
+
+  disabled: PropTypes.bool,
 };
 
 function parseVariant (input) {
@@ -55,6 +59,7 @@ const Text = forwardRef(({
   as: Component = 'span',
   ...props
 }, ref) => {
+
   const remaining = {};
   const variants = [ variant ];
   for (const [ k, v ] of Object.entries(props)) {
@@ -109,3 +114,4 @@ export const H4 =        /* #__PURE__*/make('h4',    'H4', { as: 'h4' });
 export const H5 =        /* #__PURE__*/make('h5',    'H5', { as: 'h5' });
 export const H6 =        /* #__PURE__*/make('h6',    'H6', { as: 'h6' });
 export const Link =      /* #__PURE__*/make('primary',      'Link', { as: SafeAnchor });
+

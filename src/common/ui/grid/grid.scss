@@ -8,12 +8,12 @@
   justify-content: stretch;
 
   & + &:not(.flush) {
-    margin-top: $grid-gutter-width * 0.25;
+    margin-top: $spacer * 0.25;
   }
 
   &.spaced {
     > *:not(.vr) {
-      margin-right: $grid-gutter-width * 0.25;
+      margin-right: $spacer * 0.25;
 
       &:last-child {
         margin-right: 0;
@@ -21,7 +21,7 @@
     }
 
     > .vr {
-      margin-right: $grid-gutter-width * 0.5;
+      margin-right: $spacer * 0.5;
     }
   }
 
@@ -78,13 +78,13 @@
   }
 
   .spacer {
-    width: $grid-gutter-width * 0.25;
+    width: $spacer * 0.25;
   }
 }
 
 .container > .row {
-  margin-right: -$grid-gutter-width * 0.5;
-  margin-left: -$grid-gutter-width * 0.5;
+  margin-right: -$spacer * 0.5;
+  margin-left: -$spacer * 0.5;
 }
 
 .column {
@@ -103,7 +103,7 @@
 
   &.spaced {
     > *:not(.hr) {
-      margin-bottom: $grid-gutter-width * 0.25;
+      margin-bottom: $spacer * 0.25;
 
       &:last-child {
         margin-bottom: 0;
@@ -111,7 +111,7 @@
     }
 
     > .hr {
-      margin-bottom: $grid-gutter-width * 0.5;
+      margin-bottom: $spacer * 0.5;
     }
   }
 
@@ -161,7 +161,7 @@
   }
 
   .spacer {
-    height: $grid-gutter-width * 0.25;
+    height: $spacer * 0.25;
   }
 }
 
@@ -183,13 +183,13 @@
   align-self: stretch;
 
   flex: 0 0 0;
-  margin: $grid-gutter-width * 0.25 0;
+  margin: $spacer * 0.25 0;
 
   .inner {
     flex: 1 0 100%;
     height: 0;
     border: 0;
-    border-top: $hr-border-width solid $hr-border-color;
+    border-top: $hr-margin-y solid currentColor;
   }
 }
 
@@ -200,13 +200,13 @@
   align-self: stretch;
 
   flex: 0 0 0;
-  margin: 0 $grid-gutter-width * 0.25;
+  margin: 0 $spacer * 0.25;
 
   .inner {
     flex: 0 0 0;
     width: 0;
     border: 0;
-    border-left: $hr-border-width solid $hr-border-color;
+    border-left: $hr-margin-y solid currentColor;
   }
 }
 
@@ -222,7 +222,7 @@
   display: grid !important;
 
   &.spaced {
-    grid-gap: $grid-gutter-width * 0.25;
+    grid-gap: $spacer * 0.25;
   }
 
   > .wrap {
@@ -242,23 +242,21 @@
 @each $breakpoint in map-keys($grid-breakpoints) {
   $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-  @if $grid-columns > 0 {
-    @for $i from 1 through $grid-columns {
-      .grid-column#{$infix}-#{$i} {
-        grid-column-start: $i;
-      }
+  @for $i from 1 through 12 {
+    .grid-column#{$infix}-#{$i} {
+      grid-column-start: $i;
+    }
 
-      .grid-row#{$infix}-#{$i} {
-        grid-column-start: $i;
-      }
+    .grid-row#{$infix}-#{$i} {
+      grid-column-start: $i;
+    }
 
-      .grid-column-span#{$infix}-#{$i} {
-        grid-column-end: span $i;
-      }
+    .grid-column-span#{$infix}-#{$i} {
+      grid-column-end: span $i;
+    }
 
-      .grid-row-span#{$infix}-#{$i} {
-        grid-column-end: span $i;
-      }
+    .grid-row-span#{$infix}-#{$i} {
+      grid-column-end: span $i;
     }
   }
 }

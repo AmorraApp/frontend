@@ -2,7 +2,7 @@
 $sort-arrow-width:               18px !default;
 $sort-arrow-height:              $sort-arrow-width * 0.5 !default;
 $sort-arrow-color:               white !default;
-$sort-arrow-outer-color:         fade-in(rgba($black, .2), .05) !default;
+$sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
 
 
 .datatable {
@@ -31,7 +31,7 @@ $sort-arrow-outer-color:         fade-in(rgba($black, .2), .05) !default;
 .thead {
   position: relative;
   background-color: $cl-tab-inactive;
-  color: color-yiq($cl-tab-inactive);
+  color: color-contrast($cl-tab-inactive);
   border-bottom: 1px solid $gray-450;
   // border-top: 1px solid $gray-450;
   grid-row-start: 1;

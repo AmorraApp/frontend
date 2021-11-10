@@ -2,11 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cl as classNames } from 'common/utils';
 import styles from './closebutton.scss';
-
-const VARIANTS = [
-  'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark',
-  'grade-a', 'grade-b', 'grade-c', 'grade-d', 'grade-f', 'outline',
-];
+import VARIANTS from 'common/ui/variants';
 
 const propTypes = {
   /** @default button */
@@ -15,6 +11,8 @@ const propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
+
+  'aria-label': PropTypes.string,
 
   /**
      * The visual style of the badge
@@ -38,26 +36,24 @@ const defaultProps = {
 
 const CloseButton = React.forwardRef(({
   as: Component = 'button',
-  label,
+  'aria-label': ariaLabel = 'Close',
   className,
   variant,
   size,
   ...props
 }, ref) => (
   <Component
+    {...props}
     ref={ref}
     type="button"
     className={classNames(
-      styles.close,
+      styles['btn-close'],
       className,
-      variant && styles['close-' + variant],
-      size && styles[`close-${size}`],
+      variant && styles['btn-close-' + variant],
+      size && styles[`btn-close-${size}`],
     )}
-    {...props}
-  >
-    <span aria-hidden="true">&times;</span>
-    <span className={styles['sr-only']}>{label}</span>
-  </Component>
+    aria-label={ariaLabel}
+  />
 ));
 
 CloseButton.displayName = 'CloseButton';

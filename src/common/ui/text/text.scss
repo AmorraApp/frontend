@@ -1,61 +1,4 @@
 
-.monospace {
-  @include type-code;
-}
-
-.wrap     { white-space: normal !important; }
-.nowrap   { white-space: nowrap !important; }
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.code {
-  @include type-code;
-  color: $gray-200;
-  background-color: $gray-600;
-  padding: 1px 2px;
-  display: inline-block;
-}
-
-.centered {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lowercase  { text-transform: lowercase !important; }
-.uppercase  { text-transform: uppercase !important; }
-.capitalize { text-transform: capitalize !important; }
-
-.muted { color: $muted !important; }
-
-.black-50 { color: rgba(black, .5) !important; }
-.white-50 { color: rgba(white, .5) !important; }
-.error {
-  color: $danger-500 !important;
-  font-weight: $font-weight-bold !important;
-}
-
-.small   { font-size: $font-size-small; }
-.large   { font-size: $font-size-large; }
-
-.thin       { font-weight: $font-weight-thin !important; }
-.lighter    { font-weight: $font-weight-lighter !important; }
-.light      { font-weight: $font-weight-light !important; }
-.normal     { font-weight: $font-weight-regular !important; }
-.semi-bold  { font-weight: $font-weight-semibold !important; }
-.bold       { font-weight: $font-weight-bold !important; }
-.bolder     { font-weight: $font-weight-bolder !important; }
-
-.italic  { font-style: italic !important; }
-.strong  { font-weight: $font-weight-bold !important; }
-
-@each $colorName, $colorValue in $theme-colors {
-  .#{$colorName} {
-    color: $colorValue;
-  }
-}
 
 .heading {
   &.h1 {
@@ -83,3 +26,65 @@
 .h4 { @include type-headline4; }
 .h5 { @include type-headline5; }
 .h6 { @include type-headline6; }
+
+.small   { font-size: $font-size-small; }
+.large   { font-size: $font-size-large; }
+
+.wrap     { white-space: normal !important; }
+.nowrap   { white-space: nowrap !important; }
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.monospace {
+  @include type-code;
+}
+
+.code {
+  @include type-code;
+  color: $gray-200;
+  background-color: $gray-600;
+  padding: 1px 2px;
+  display: inline-block;
+}
+
+.centered {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lowercase  { text-transform: lowercase !important; }
+.uppercase  { text-transform: uppercase !important; }
+.capitalize { text-transform: capitalize !important; }
+
+.thin       { font-weight: $font-weight-thin !important; }
+.lighter    { font-weight: $font-weight-lighter !important; }
+.light      { font-weight: $font-weight-light !important; }
+.normal     { font-weight: $font-weight-regular !important; }
+.semi-bold  { font-weight: $font-weight-semibold !important; }
+.bold       { font-weight: $font-weight-bold !important; }
+.bolder     { font-weight: $font-weight-bolder !important; }
+
+.italic  { font-style: italic !important; }
+.strong  { font-weight: $font-weight-bold !important; }
+
+@each $colorName, $colorValue in $theme-colors {
+  .#{$colorName} {
+    color: $colorValue;
+  }
+}
+
+.muted { color: $muted !important; }
+.black-50 { color: rgba(black, .5) !important; }
+.white-50 { color: rgba(white, .5) !important; }
+
+.valid { color: $success !important; }
+.invalid { color: $danger !important; }
+
+.error {
+  color: $danger-700 !important;
+  font-weight: $font-weight-bold !important;
+}

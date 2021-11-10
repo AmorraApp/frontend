@@ -29,7 +29,7 @@
   min-width: $dropdown-min-width;
   padding: $dropdown-padding-y $dropdown-padding-x;
   margin: $dropdown-spacer 0 0; // override default ul
-  font-family: $font-family-base;
+  font-family: $font-family-ui;
   @include font-size($dropdown-font-size);
   color: $dropdown-color;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
@@ -134,7 +134,7 @@
   // width: 100%; // For `<button>`s
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   clear: both;
-  font-weight: $font-weight-normal;
+  font-weight: $font-weight-regular;
   color: $dropdown-link-color;
   text-align: inherit; // For `<button>`s
   text-decoration: none;
@@ -156,7 +156,8 @@
   }
 
   &:not(.inactive) {
-    @include hover-focus() {
+    &:hover,
+    &:focus {
       color: $dropdown-link-hover-color;
       text-decoration: none;
       @include gradient-bg($dropdown-link-hover-bg);

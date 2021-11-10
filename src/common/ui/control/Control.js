@@ -1,8 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, Children } from 'react';
-import Feedback from './Feedback';
-import styles from './input.scss';
+import styles from './control.scss';
 
 const propTypes = {
   /**
@@ -60,8 +59,8 @@ const FormControl = forwardRef(({
 }, ref) => {
 
   const classes = [
-    styles['form-control'],
-    size && styles[`form-control-${size}`],
+    styles.control,
+    size && styles[`control-${size}`],
     disabled && styles.disabled,
     readOnly && styles.readonly,
     isValid && styles[`is-valid`],
@@ -76,7 +75,7 @@ const FormControl = forwardRef(({
 
   if (!children || !Children.count(children) && placeholder) {
     children = <span>{placeholder}</span>;
-    classes.push(styles['form-control-placeholder']);
+    classes.push(styles['control-placeholder']);
   }
 
   return (
@@ -90,4 +89,5 @@ const FormControl = forwardRef(({
 });
 FormControl.displayName = 'FormControl';
 FormControl.propTypes = propTypes;
-export default Object.assign(FormControl, { Feedback });
+
+export default FormControl;

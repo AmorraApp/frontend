@@ -285,13 +285,13 @@ textarea.form-control {
 .form-row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -$form-grid-gutter-width * 0.5;
-  margin-left: -$form-grid-gutter-width * 0.5;
+  margin-right: -$form-spacer * 0.5;
+  margin-left: -$form-spacer * 0.5;
 
   > .col,
   > [class*="col-"] {
-    padding-right: $form-grid-gutter-width * 0.5;
-    padding-left: $form-grid-gutter-width * 0.5;
+    padding-right: $form-spacer * 0.5;
+    padding-left: $form-spacer * 0.5;
   }
 }
 

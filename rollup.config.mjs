@@ -3,6 +3,7 @@
 import path from 'path';
 import { promises as fs } from 'fs';
 // import analyzer from 'rollup-plugin-analyzer';
+import html from '@rollup/plugin-html';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
@@ -17,6 +18,7 @@ import rem2px from 'postcss-rem-to-pixel';
 import postcssImport from 'postcss-import';
 import postcssUrl from 'postcss-url';
 import dotenv from './dotenv.mjs';
+import template from './src/html-template.js';
 
 import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
@@ -76,6 +78,7 @@ function pcss () {
 
 const plugins = [
   // analyzer(),
+  html({ template }),
   sizes({ ignoreEmpty: true, details: false }),
   alias({
     entries: [
@@ -149,14 +152,37 @@ const config = {
   manualChunks: (id) => {
     const [ , nodeModule ] = id.match(moduleMatch) || [];
     if (nodeModule) {
-      if (nodeModule.includes('@aws') || nodeModule.includes('aws-amplify')) return 'aws';
+      if (
+        nodeModule.includes('@aws')
+        || nodeModule.includes('aws-amplify')
+        || nodeModule.includes('amazon')
+        || nodeModule.includes('tslib')
+        || nodeModule.includes('bowser')
+        || nodeModule.includes('crypto-js')
+        || nodeModule.includes('cookie')
+        || nodeModule.includes('isarray')
+        || nodeModule.includes('buffer')
+        || nodeModule.includes('url')
+        || nodeModule.includes('isomorphic-unfetchn')
+        || nodeModule.includes('zen-observable')
+        || nodeModule.includes('punycode')
+        || nodeModule.includes('universal-cookie')
+        || nodeModule.includes('querystring')
+        || nodeModule.includes('cookie')
+        || nodeModule.includes('base64-js')
+        || nodeModule.includes('js-cookie')
+        || nodeModule.includes('ieee754')
+        || nodeModule.includes('unfetch')
+      ) return 'aws';
       if (nodeModule.includes('mobx')) return 'react';
       if (
         nodeModule.includes('react')
         || nodeModule.includes('prop-types')
         || nodeModule.includes('history')
+        || nodeModule.includes('scheduler')
+        || nodeModule.includes('style-inject')
       ) return 'react';
-      return 'vendor';
+
     }
     // if (id.includes('react/common/')) return 'common';
   },
@@ -168,8 +194,8 @@ const config = {
       dir: 'dist',
       format: 'esm',
       sourcemap: !PROD,
-      // entryFileNames: ".js",
-      // chunkFileNames: "[name].js",
+      entryFileNames: "[name]_[hash].js",
+      chunkFileNames: "[name]_[hash].js",
     },
   ],
   treeshake: true,

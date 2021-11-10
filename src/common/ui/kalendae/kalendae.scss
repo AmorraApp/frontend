@@ -17,16 +17,16 @@ $kalendae-day-outofmonth-color: $gray-300 !default;
 $kalendae-day-inmonth-color: $gray-800 !default;
 
 $kalendae-day-inmonth-hover-background: $info !default;
-$kalendae-day-inmonth-hover-color: color-yiq($kalendae-day-inmonth-hover-background) !default;
+$kalendae-day-inmonth-hover-color: color-contrast($kalendae-day-inmonth-hover-background) !default;
 $kalendae-day-outofmonth-hover-background: rgba($kalendae-day-inmonth-hover-background, 0.5) !default;
 $kalendae-day-outofmonth-hover-color: rgba($kalendae-day-inmonth-hover-background, 0.5) !default;
 
 $kalendae-selected-background: $primary !default;
-$kalendae-selected-color: color-yiq($kalendae-selected-background) !default;
+$kalendae-selected-color: color-contrast($kalendae-selected-background) !default;
 $kalendae-selected-outofmonth-border: rgba($kalendae-selected-background, 0.5) !default;
 
 $kalendae-selected-range-background: lighten($kalendae-selected-background, 15%) !default;
-$kalendae-selected-range-color: color-yiq($kalendae-selected-range-background) !default;
+$kalendae-selected-range-color: color-contrast($kalendae-selected-range-background) !default;
 $kalendae-selected-range-outofmonth-border: rgba($kalendae-selected-range-background, 0.5) !default;
 
 $kalendae-cell-width: 36px;
@@ -45,7 +45,7 @@ $today-line-position: floor($kalendae-cell-height * 0.15);
   margin: 4px;
   border-radius:5px;
   font-size: 1rem;
-  font-family: $font-family-base;
+  font-family: $font-family-ui;
 
   cursor:default;
   user-select: none;
@@ -220,7 +220,7 @@ $today-line-position: floor($kalendae-cell-height * 0.15);
 .k-active {
   cursor:pointer;
 
-  @include hover() {
+  &:hover {
     background: rgba(theme-color("info"), .5);
   }
 }

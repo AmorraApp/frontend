@@ -1,0 +1,74 @@
+
+.compound {
+  padding: 0;
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  input[type="month"] {
+    color: inherit;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+    box-shadow: none;
+    appearance: none;
+  }
+
+  svg { @include svg(1em); }
+  svg:only-child { vertical-align: middle; }
+
+  > .form-control {
+    border-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+.compound-btn {
+  position: relative;
+  z-index: 2;
+  align-self: stretch;
+
+  &.compound-btn:focus,
+  &.compound-btn.focus {
+    z-index: 3;
+    box-shadow: none;
+  }
+
+  &.compound-btn-prefix,
+  &.compound-btn-postfix {
+    margin-top: -$input-border-width;
+    margin-bottom: -$input-border-width;
+  }
+
+  &.compound-btn-prefix {
+    margin-left: -$input-border-width;
+    @include border-right-radius(0);
+  }
+
+  &.compound-btn-postfix {
+    margin-right: -$input-border-width;
+    @include border-left-radius(0);
+  }
+}
+
+.compound-text {
+  padding: 0 0.5em;
+
+  + .compound-divider {
+    margin-left: 0;
+  }
+}
+
+.compound-divider {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+
+  + .compound-text {
+    margin-right: 0;
+  }
+}
+

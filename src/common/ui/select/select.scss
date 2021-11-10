@@ -135,7 +135,7 @@
 
 .select-internal:not(:disabled):not(.disabled) {
   .chevron {
-    @include hover-focus() {
+    &:hover, &:focus {
       opacity: .75;
       outline: none;
     }

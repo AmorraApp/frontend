@@ -3,7 +3,11 @@ import { useCallback, useRef } from 'react';
 import { cl as classNames } from 'common/utils';
 import useDerivedState from 'common/hooks/useDerivedState';
 import styles from './dialogs.scss';
-import { Labelable, Label, TextField, TextArea, Feedback } from 'common/ui/input';
+import TextArea from 'common/ui/textarea';
+import TextField from 'common/ui/textfield';
+import Label from 'common/ui/label';
+import Text from 'common/ui/text';
+
 import Dialog from './Dialog';
 import useTripWire from 'common/hooks/useTripWire';
 
@@ -47,7 +51,7 @@ export default function PromptDialog ({
       onSubmit={submit}
       onEntering={focus}
     >
-      <Labelable>
+      <Label.Group>
         <Label>{caption}</Label>
         <Input
           ref={inputRef}
@@ -58,8 +62,8 @@ export default function PromptDialog ({
           isInvalid={dirty && !!invalid}
           onEnterKey={!multiline && submit || undefined}
         />
-        {!!invalid && <Feedback type="invalid">{invalid}</Feedback>}
-      </Labelable>
+        {!!invalid && <Text invalid>{invalid}</Text>}
+      </Label.Group>
     </Dialog>
   );
 }

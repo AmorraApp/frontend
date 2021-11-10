@@ -230,7 +230,7 @@
   }
 
   .label {
-    color: color-yiq($primary);
+    color: color-contrast($primary);
     transform: rotate(45deg);
     text-align: center;
   }

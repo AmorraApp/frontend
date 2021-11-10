@@ -3,36 +3,41 @@
 import { useState, useCallback } from 'react';
 import Confirm from './Confirm';
 import Prompt from './Prompt';
-import { useOrphanage } from 'common/ui/mount';
+import { createOrphan } from 'common/ui/mount';
 
-function makePrompt (createOrphan, DialogComponent) {
-  return useCallback(({ onSubmit, onCancel, ...props }) => {
+export default function createDialog (DialogComponent) {
+  return ({ onSubmit, onCancel, ...props }) => new Promise((resolve) => {
     var disposer;
     const dispose = () => disposer && disposer();
 
     const Dialog = () => {
       const [ open, setOpen ] = useState(true);
+
       const cancel = useCallback(() => {
         setOpen(false);
+        resolve();
         onCancel && onCancel();
       });
       const submit = useCallback((...args) => {
         setOpen(false);
+        resolve(args[0]);
         onSubmit && onSubmit(...args);
       });
-      return <DialogComponent {...props} show={open} onCancel={cancel} onSubmit={submit} onExited={dispose} />;
+
+      return (
+        <DialogComponent
+          {...props}
+          show={open}
+          onCancel={cancel}
+          onSubmit={submit}
+          onExited={dispose}
+        />
+      );
     };
 
     disposer = createOrphan(Dialog);
-  }, [ createOrphan, DialogComponent ]);
+  });
 }
 
-export default function useDialogs () {
-  const { createOrphan } = useOrphanage();
-
-  return {
-    custom: (Dialog) => makePrompt(createOrphan, Dialog),
-    confirm: makePrompt(createOrphan, Confirm),
-    prompt: makePrompt(createOrphan, Prompt),
-  };
-}
+export const prompt = createDialog(Prompt);
+export const confirm = createDialog(Confirm);

@@ -42,7 +42,7 @@
 
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active {
-      color: color-yiq(darken($primary, 10%));
+      color: color-contrast(darken($primary, 10%));
       background-color: darken($primary, 10%);
       background-image: none; // Remove the gradient for the pressed/active state
       border-color: darken($primary, 12.5%);
