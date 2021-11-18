@@ -79,7 +79,7 @@ function pcss () {
 const plugins = [
   // analyzer(),
   html({ template }),
-  sizes({ ignoreEmpty: true, details: false }),
+  PROD && sizes({ ignoreEmpty: true, details: false }),
   alias({
     entries: [
       { find: 'common', replacement: resolve('common') },
@@ -96,10 +96,9 @@ const plugins = [
     values: {
       '__ENV_PROD__': JSON.stringify(process.env.NODE_ENV === 'production'),
       '__ENV_DEV__': JSON.stringify(process.env.NODE_ENV !== 'production'),
-      ...dotenv(),
+      ...dotenv,
     },
   }),
-  dotenv(),
   pcss(),
   json(),
   svg(),

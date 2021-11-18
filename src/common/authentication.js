@@ -1,20 +1,39 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState, createContext, useContext, useCallback } from 'react';
-import { AWS_REGION, COGNITO_APP_CLIENT_ID } from 'common/config';
-import { warn } from 'common/utils';
-import {
-  CognitoIdentityProviderClient,
-  SignUpCommand,
-  InitiateAuthCommand,
-  GetUserCommand,
-  RespondToAuthChallengeCommand,
-} from '@aws-sdk/client-cognito-identity-provider';
-import { prompt } from 'common/ui/dialogs';
+import { gql, useQuery } from 'common/graphql';
 
-const AUTH_STATUS_LOADING = null;
-const AUTH_STATUS_SIGNEDIN = true;
-const AUTH_STATUS_SIGNEDOUT = false;
+export const AUTH_STATUS_LOADING = null;
+export const AUTH_STATUS_SIGNEDIN = true;
+export const AUTH_STATUS_SIGNEDOUT = false;
 
-const client = new CognitoIdentityProviderClient({ region: AWS_REGION });
+export const ROLE_ADMIN = 'ADMIN';
+export const ROLE_MODERATOR = 'MODERATOR';
+export const ROLE_REVIEWER = 'REVIEWER';
+export const ROLE_USER = 'USER';
+export const ROLE_PUBLIC = 'PUBLIC';
+
+export const ROLES = {
+  [ROLE_ADMIN]:     ROLE_ADMIN,
+  [ROLE_MODERATOR]: ROLE_MODERATOR,
+  [ROLE_REVIEWER]:  ROLE_REVIEWER,
+  [ROLE_USER]:      ROLE_USER,
+  [ROLE_PUBLIC]:    ROLE_PUBLIC,
+};
+
+const LEVELS_THRESHOLD = {
+  [ROLE_ADMIN]:     100,
+  [ROLE_MODERATOR]: 75,
+  [ROLE_REVIEWER]:  50,
+  [ROLE_USER]:      10,
+  [ROLE_PUBLIC]:    0,
+};
+
+export function roleCheck (needed, has) {
+  const neededLevel = LEVELS_THRESHOLD[needed] || 0;
+  const hasLevel = LEVELS_THRESHOLD[has] || 0;
+  return neededLevel >= hasLevel;
+}
+
 
 const AuthenticationContext = createContext();
 AuthenticationContext.displayName = 'AuthenticationContext';
@@ -23,17 +42,20 @@ export function useAuthentication () {
   return useContext(AuthenticationContext) || false;
 }
 
+const gGET_CURRENT_USER = gql`
+
+`;
+
 export function AuthenticationProvider ({ children }) {
 
-  const [ { status, user }, setState ] = useState({ status: AUTH_STATUS_LOADING });
+  const token = window.sessionStorage.getItem('jwt') || window.localStorage.getItem('jwt');
 
-  const authWithEmail = useCallback(async (email, password) => {
-    const { user } = signInWithEmail(email, password);
-  });
+  const { loading, error, data, refetch } = useQuery(gGET_CURRENT_USER);
+
 
   const context = {
-    isAuthenticated: status,
-    user,
+    isAuthenticated: !!token,
+    token,
   };
 
   return (
@@ -51,132 +73,23 @@ export function IsNotAuthenticated ({ children }) {
   return isAuthenticated ? null : children;
 }
 
-// export const authenticateWithGoogle = () => Auth.federatedSignIn({ provider: 'Google' });
-// export const authenticateWithFacebook = () => Auth.federatedSignIn({ provider: 'Facebook' });
-// export const deauthenticate = () => Auth.signOut();
+import { Route } from 'react-router-dom';
+import UnauthorizedRoute from '../routes/unauthorized';
+export const PrivateRoute = ({ role: roleNeeded = ROLE_USER, fallback, element, children, ...rest }) => (
+  <Route
+    {...rest}
+    render={() => {
+      const { role } = useAuthentication();
 
+      if (roleCheck(roleNeeded, role)) {
+        return element || children;
+      }
 
-async function signUpWithEmail (email, password) {
-  const command = new SignUpCommand({
-    ClientId: COGNITO_APP_CLIENT_ID,
-    Password: password,
-    Username: email,
-    UserAttributes: [
-      {
-        Name: 'email',
-        Value: email,
-      },
-    ],
-  });
-
-  const { UserConfirmed: confirmed, UserSub: uuid } = await client.send(command);
-  if (confirmed) return { email, uuid };
-
-}
-
-
-async function signInWithEmail (email, password) {
-  let command = new InitiateAuthCommand({
-    ClientId: COGNITO_APP_CLIENT_ID,
-    AuthFlow: 'USER_PASSWORD_AUTH',
-    AuthParameters: {
-      USERNAME: email,
-      PASSWORD: password,
-    },
-  });
-
-  do {
-    const response = await client.send(command);
-    const { AuthenticationResult, Session, ChallengeName, ChallengeParameters } = response;
-
-    if (AuthenticationResult) return handleAuthResult(AuthenticationResult);
-
-    if (ChallengeName) {
-      command = await handleChallenge({ Session, ChallengeName, ChallengeParameters, USERNAME: email });
-      continue;
-    }
-  } while (command);
-
-  return false;
-}
-
-async function signinWithRefreshToken (RefreshToken) {
-  let command = new InitiateAuthCommand({
-    ClientId: COGNITO_APP_CLIENT_ID,
-    AuthFlow: 'REFRESH_TOKEN_AUTH',
-    AuthParameters: {
-      REFRESH_TOKEN: RefreshToken,
-    },
-  });
-
-  do {
-    const response = await client.send(command);
-    const { AuthenticationResult, Session, ChallengeName, ChallengeParameters } = response;
-
-    if (AuthenticationResult) return handleAuthResult(AuthenticationResult);
-
-    if (ChallengeName) {
-      command = await handleChallenge({ Session, ChallengeName, ChallengeParameters });
-      continue;
-    }
-  } while (command);
-
-  return false;
-}
-
-async function getUserWithAccessToken ( AccessToken ) {
-  const { UserAttributes } = await client.send(new GetUserCommand({ AccessToken }));
-  return UserAttributes;
-}
-
-async function handleAuthResult ({
-  AccessToken,
-  ExpiresIn,
-  IdToken,
-  RefreshToken,
-  TokenType,
-}) {
-  const { user } = getUserWithAccessToken(AccessToken);
-  console.log({
-    UserAttributes: user,
-    AccessToken,
-    ExpiresIn,
-    IdToken,
-    RefreshToken,
-    TokenType,
-  });
-  return {
-    user,
-    AccessToken,
-    ExpiresIn,
-    IdToken,
-    RefreshToken,
-    TokenType,
-  };
-}
-
-async function handleChallenge ({ Session, ChallengeName, ChallengeParameters, USERNAME }) {
-  switch (ChallengeName) {
-  case 'NEW_PASSWORD_REQUIRED':
-    return new RespondToAuthChallengeCommand({
-      ClientId: COGNITO_APP_CLIENT_ID,
-      Session,
-      ChallengeName,
-      ChallengeResponses: {
-        USERNAME,
-        NEW_PASSWORD: prompt({
-          caption: 'Your password has been marked for replacement, please provide a new password.',
-        }),
-      },
-    });
-
-  case 'MFA_SETUP':
-  case 'SMS_MFA':
-  case 'PASSWORD_VERIFIER':
-  case 'DEVICE_SRP_AUTH':
-  case 'DEVICE_PASSWORD_VERIFIER':
-  default:
-    warn('Cognito requested an unsupported challenge type:', { ChallengeName, ChallengeParameters });
-  }
-}
-
+      return fallback || <UnauthorizedRoute />;
+    }}
+  />
+);
+PrivateRoute.propTypes = {
+  ...Route.propTypes,
+  role: PropTypes.oneOf(Object.values(ROLES)),
+};

@@ -1,14 +1,44 @@
 /* global process */
 /* eslint no-console: 0 */
-import LocalWebServer from 'local-web-server'; // eslint-disable-line
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 import { watch } from 'rollup';
 import rollupConfig from './rollup.config.mjs';
-import lwsConfig from './lws.config.mjs';
+
+import express from 'express';
+import proxy from 'express-http-proxy';
+const app = express();
+
+app.use('/v1', proxy('localhost:3000'));
+app.use(express.static(path.resolve(__dirname, 'dist')));
+app.get('/favicon.con', (req, res) => {
+  res.status(200);
+  res.send('');
+});
+app.use((req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist/index.html'), {
+    lastModified: false,
+    cacheControl: false,
+  });
+});
 
 (async () => {
 
+  var server = app.listen(
+    process.env.PORT || 4000,
+    process.env.HOST || '0.0.0.0',
+    function () {
+      console.log(`Server listening on port ${this.address().port} in ${app.settings.env} mode`);
+    },
+  );
+
+
   const watcher = await watch(rollupConfig);
-  const ws = await LocalWebServer.create(lwsConfig);
 
   watcher.on('event', (event) => {
     if (event.result) event.result.close();
@@ -43,9 +73,22 @@ import lwsConfig from './lws.config.mjs';
     if (event.code === 'ERROR') console.error(event.error.formatted || event.error.message);
   });
 
-  function shutdown () {
+  async function shutdown () {
     watcher.close();
-    ws.server.close();
+
+    var closed = new Promise((resolve) => server.on('close', resolve));
+    server.close();
+
+    await closed;
+
+    console.log('Server halted.');
+
+    var promises = [];
+    process.emit('graceful stop', promises);
+
+    await Promise.allSettled(promises);
+    console.log('Shutdown');
+    process.exit();
   }
 
   process.on('SIGUSR2', shutdown);

@@ -6,30 +6,29 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './routes/login';
 import HomePage from './routes/home';
-import { AuthenticationProvider, IsAuthenticated, IsNotAuthenticated } from 'common/authentication';
+import { AuthenticationProvider, PrivateRoute } from 'common/authentication';
 import { Orphanage } from 'common/ui/mount';
+import { GraphQLProvider } from 'common/graphql';
 
 const PrivacyPolicy = lazy(() => import('./routes/privacy'));
 
 const App = () => (
-  <AuthenticationProvider>
-    <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <IsNotAuthenticated>
-            <Route exact path="/" element={<LoginPage />}>
-              <Route path="*" element={<Navigate to="/" />} />
-            </Route>
-          </IsNotAuthenticated>
-          <IsAuthenticated>
-            <Route exact path="/" element={<HomePage />} />
-          </IsAuthenticated>
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-        </Routes>
-      </Suspense>
-    </Router>
-    <Orphanage />
-  </AuthenticationProvider>
+  <GraphQLProvider>
+    <AuthenticationProvider>
+      <Router>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <PrivateRoute exact path="/" element={<HomePage />} fallback={<LoginPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Suspense>
+      </Router>
+      <Orphanage />
+    </AuthenticationProvider>
+  </GraphQLProvider>
 );
 
-render(<App />, document.getElementById("react"));
+const mountPoint = document.createElement('div');
+document.body.appendChild(mountPoint);
+render(<App />, mountPoint);
