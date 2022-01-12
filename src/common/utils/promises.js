@@ -91,11 +91,26 @@ export async function pmap (collection, predicate, { concurrency = Infinity } = 
 }
 
 export async function prace (...promises) {
-  promises = Array.isArray(promises[0]) ? promises.flat(1) : promises;
+  promises = promises.flat(Infinity);
   if (Promise.race) return Promise.race(promises);
   return new Promise((resolve, reject) => {
     for (const p of promises) {
       p.then(resolve, reject);
+    }
+  });
+}
+
+export async function pcoalesce (...promises) {
+  promises = promises.flat(Infinity);
+  let count = promises.length;
+  return new Promise((resolve, reject) => {
+    const fin = (res) => {
+      if (res || count <= 0) return resolve(res);
+      count--;
+    };
+
+    for (const p of promises) {
+      p.then(fin, reject);
     }
   });
 }
