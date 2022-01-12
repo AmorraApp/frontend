@@ -47,6 +47,8 @@ const propTypes = {
    */
   eventKey: PropTypes.string,
 
+  href: PropTypes.string,
+
   parentKey: PropTypes.string,
 
   jumpTo: PropTypes.string,
@@ -82,6 +84,7 @@ const SideNavItem = forwardRef(({
   subNavAs,
   children,
   badge,
+  href,
   eventKey,
   parentKey,
   jumpTo,
@@ -108,7 +111,7 @@ const SideNavItem = forwardRef(({
         {...props}
         ref={ref}
         disabled={disabled}
-        href={computeHref(eventKey)}
+        href={href || computeHref(eventKey)}
         onClick={onClick}
         className={classNames(
           styles['sidenav-link'],

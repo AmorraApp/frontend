@@ -1,4 +1,7 @@
 
+@import '../control/variables';
+@import "../dropdown/variables";
+
 .select {
   width: 100%
 }
@@ -8,21 +11,21 @@
   position: relative;
   display: flex;
   user-select: none;
-  color: $input-plaintext-color;
+  color: $body-color;
 
   .clear {
     flex-grow: 0;
     outline: 0;
     line-height: 1;
-    margin-right: $input-btn-padding-y * 0.5;
+    margin-right: $input-padding-y * 0.5;
     align-self: center;
   }
 }
 
 .select-multiple {
-  padding-left: $input-btn-padding-y;
-  padding-top: subtract($input-btn-padding-x * 0.5, 2px);
-  padding-bottom: subtract($input-btn-padding-x * 0.5, 2px);
+  padding-left: $input-padding-y;
+  padding-top: subtract($input-padding-x * 0.5, 2px);
+  padding-bottom: subtract($input-padding-x * 0.5, 2px);
 }
 
 .select-native {
@@ -50,7 +53,7 @@
   color: $input-placeholder-color;
 
   .select-multiple & {
-    padding-left: $input-btn-padding-x - $input-btn-padding-y;
+    padding-left: $input-padding-x - $input-padding-y;
     padding-top: 2px;
   }
 }
@@ -62,16 +65,16 @@
   width: 100%;
   line-height: inherit;
   font-size: inherit;
-  padding: 0 $input-btn-padding-x - $input-btn-padding-y;
+  padding: 0 $input-padding-x - $input-padding-y;
 
   .select-single & {
-    margin-left: -($input-btn-padding-x - $input-btn-padding-y);
+    margin-left: -($input-padding-x - $input-padding-y);
   }
 
   background: $input-bg;
   border: none;
 
-  color: $input-plaintext-color;
+  color: $body-color;
 
   &:-moz-focusring {
     color: transparent;

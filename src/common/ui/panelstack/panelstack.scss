@@ -27,7 +27,7 @@
 
   overflow-y: auto;
   overflow-x: hidden;
-  background: $body-bg;
+  background: $background;
 
   z-index: 2;
 
@@ -122,7 +122,7 @@
 
   .arrow {
     opacity: 0.5;
-    color: $input-plaintext-color;
+    color: $body-color;
     svg { @include svg(); }
     flex: 0 1 auto;
     display: flex;

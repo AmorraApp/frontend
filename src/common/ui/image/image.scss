@@ -1,4 +1,20 @@
 
+$thumbnail-padding:                 .25rem !default;
+$thumbnail-bg:                      $background !default;
+$thumbnail-border-width:            $border-width !default;
+$thumbnail-border-color:            $gray-300 !default;
+$thumbnail-border-radius:           $border-radius !default;
+$thumbnail-box-shadow:              $box-shadow-sm !default;
+// scss-docs-end thumbnail-variables
+
+@mixin img-fluid {
+  // Part 1: Set a maximum relative to the parent
+  max-width: 100%;
+  // Part 2: Override the height to auto, otherwise images will be stretched
+  // when setting a width and height attribute on the img element.
+  height: auto;
+}
+
 .img {
   object-fit: contain;
 }
@@ -69,7 +85,7 @@
 }
 
 .rounded-pill {
-  border-radius: $rounded-pill !important;
+  border-radius: $border-radius-pill !important;
 }
 
 .rounded-0 {

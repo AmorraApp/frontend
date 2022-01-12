@@ -3,10 +3,10 @@ import { cl } from 'common/utils';
 import { forwardRef } from 'react';
 import styles from './badge.scss';
 import CloseButton from '../close-button';
+import utilities from 'common/ui/utility.scss';
 
 const VARIANTS = [
-  'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark',
-  'grade-a', 'grade-b', 'grade-c', 'grade-d', 'grade-f',
+  'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'brand', 'accent',
 ];
 
 const propTypes = {
@@ -30,11 +30,6 @@ const propTypes = {
    * some additional horizontal padding
    */
   pill: PropTypes.bool,
-
-  /**
-   * Style the badge as a button
-   */
-  button: PropTypes.bool,
 
   /** @default span */
   as: PropTypes.elementType,
@@ -61,9 +56,7 @@ const Badge = forwardRef(({
   as: Component = 'span',
   pill,
   className,
-  size,
-  variant = 'primary',
-  button,
+  variant = 'secondary',
   onClose,
   closable,
   children,
@@ -74,11 +67,9 @@ const Badge = forwardRef(({
     ref={ref}
     className={cl(
       styles.badge,
-      pill && styles.pill,
-      variant && styles['badge-' + variant],
-      size && styles[`badge-${size}`],
+      pill && utilities['rounded-pill'],
+      variant && utilities['bg-' + variant],
       disabled && styles.disabled,
-      button && styles['badge-btn'],
       className,
     )}
     {...props}

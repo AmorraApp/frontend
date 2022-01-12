@@ -41,6 +41,8 @@ const propTypes = {
      */
   size: PropTypes.string,
 
+  block: PropTypes.bool,
+
   /** Manually set the visual state of the button to `:active` */
   active: PropTypes.bool,
 
@@ -82,6 +84,7 @@ const Button = React.forwardRef(
     className,
     gutterless,
     type,
+    block,
     as,
     ...props
   }, ref) => {

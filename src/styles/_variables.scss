@@ -1,4 +1,6 @@
 
+$white: white;
+$black: black;
 $background: #080d13;
 
 $surface-1: #131e2a;
@@ -30,6 +32,30 @@ $gray-850: #212529;
 $gray-900: #191c1f;
 $gray-950: #0a0b0c;
 $gray-999: #020303;
+
+$grays: (
+  '000': $gray-000,
+  '050': $gray-050,
+  '100': $gray-100,
+  '150': $gray-150,
+  '200': $gray-200,
+  '250': $gray-250,
+  '300': $gray-300,
+  '350': $gray-350,
+  '400': $gray-400,
+  '450': $gray-450,
+  '500': $gray-500,
+  '550': $gray-550,
+  '600': $gray-600,
+  '650': $gray-650,
+  '700': $gray-700,
+  '750': $gray-750,
+  '800': $gray-800,
+  '850': $gray-850,
+  '900': $gray-900,
+  '950': $gray-950,
+  '999': $gray-999,
+);
 
 $brand-050:  #3a005f;
 $brand-100:  #4200ba;
@@ -99,6 +125,9 @@ $theme-colors: (
   "danger":     $danger-500,
 );
 
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
+
+
 $body-color: $gray-950;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
@@ -124,12 +153,23 @@ $font-size-large: 1.3em;
 $font-size-small: 0.85em;
 $font-size-code: 1rem;
 $font-size-sub-sup: .75em;
+$font-size-base: $font-size-root;
 
 $font-family-brand:       Lobster, Georgia, 'Times New Roman', Times, Times, serif;
 $font-family-heading:     Montserrat, Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-body:        "Open Sans", Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-monospace:   "Cousine", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-ui:          Roboto, Arial, sans-serif;
+$font-family-base:        $font-family-body;
+
+$fonts: (
+  brand: $font-family-brand,
+  heading: $font-family-heading,
+  body: $font-family-body,
+  monospace: $font-family-monospace,
+  ui: $font-family-ui,
+  base: $font-family-base,
+);
 
 $font-weight-thin:     100;
 $font-weight-lighter:  200;
@@ -143,6 +183,7 @@ $font-weight-bolder:   800;
 $line-height-small:    1.25;
 $line-height-regular:  1.5;
 $line-height-large:    2;
+$line-height-base: $line-height-regular;
 
 $zindex-sticky:                     1020;
 $zindex-fixed:                      1030;
@@ -158,6 +199,9 @@ $link-decoration:                         underline !default;
 $link-shade-percentage:                   20% !default;
 $link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
 $link-hover-decoration:                   null !default;
+
+$stretched-link-pseudo-element:           after !default;
+$stretched-link-z-index:                  1 !default;
 
 // Paragraphs
 //
@@ -210,6 +254,9 @@ $spacers: (
   3: $spacer * 3,
 );
 
+$negative-spacers: negativify-map($spacers);
+
+
 @function spacer ($size: 0) {
   @return map-get($spacers, $size);
 }
@@ -251,6 +298,7 @@ $hr-opacity:                  .25 !default;
 // Customizes the `.table` component with basic values, each used across all table variations.
 
 // scss-docs-start table-variables
+$table-cell-padding:          .5rem;
 $table-cell-padding-y:        .5rem !default;
 $table-cell-padding-x:        .5rem !default;
 $table-cell-padding-y-sm:     .25rem !default;
@@ -301,3 +349,31 @@ $table-variants: (
   "danger":     shift-color($danger, $table-bg-scale),
 ) !default;
 // scss-docs-end table-loop
+
+// Popovers
+
+// scss-docs-start popover-variables
+$popover-font-size:                 $font-size-small !default;
+$popover-bg:                        $white !default;
+$popover-max-width:                 276px !default;
+$popover-border-width:              $border-width !default;
+$popover-border-color:              rgba($black, .2) !default;
+$popover-border-radius:             $border-radius-lg !default;
+$popover-inner-border-radius:       subtract($popover-border-radius, $popover-border-width) !default;
+$popover-box-shadow:                $box-shadow !default;
+
+$popover-header-bg:                 shade-color($popover-bg, 6%) !default;
+$popover-header-color:              $body-color !default;
+$popover-header-padding-y:          .5rem !default;
+$popover-header-padding-x:          $spacer !default;
+
+$popover-body-color:                $body-color !default;
+$popover-body-padding-y:            $spacer !default;
+$popover-body-padding-x:            $spacer !default;
+
+$popover-arrow-width:               1rem !default;
+$popover-arrow-height:              .5rem !default;
+$popover-arrow-color:               $popover-bg !default;
+
+$popover-arrow-outer-color:         fade-in($popover-border-color, .05) !default;
+// scss-docs-end popover-variables

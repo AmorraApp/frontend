@@ -1,13 +1,19 @@
+
 $enable-caret:                true !default;
 $enable-rounded:              true !default;
 $enable-shadows:              true !default;
 $enable-gradients:            true !default;
 $enable-transitions:          true !default;
-// $enable-reduced-motion:       true !default;
+$enable-reduced-motion:       true !default;
 $enable-smooth-scroll:        true !default;
 $enable-grid-classes:         true !default;
-// $enable-cssgrid:              false !default;
+$enable-cssgrid:              false !default;
+$enable-button-pointers:      true !default;
+$enable-rfs:                  true !default;
+$enable-validation-icons:     true !default;
 $enable-negative-margins:     false !default;
+$enable-deprecation-messages: true !default;
+$enable-important-utilities:  true !default;
 
 $variable-prefix:             '' !default;
 
@@ -16,6 +22,7 @@ $variable-prefix:             '' !default;
 @import "~bootstrap/scss/mixins/box-shadow";
 @import "~bootstrap/scss/mixins/breakpoints";
 @import "~bootstrap/scss/mixins/gradients";
+@import "~bootstrap/scss/mixins/reset-text";
 
 // Helper function to replace negative values with 0
 @function valid-radius($radius) {

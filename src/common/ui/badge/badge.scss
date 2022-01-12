@@ -1,81 +1,12 @@
 
-@mixin button-variant($background, $border, $text: color-contrast($background), $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
-  color: $text;
-  @include gradient-bg($background);
-  border-color: $border;
-  @include box-shadow($btn-box-shadow);
+@import '../button/variables';
 
-  &:not(.inactive) {
-    &:hover {
-      color: color-contrast($hover-background);
-      @include gradient-bg($hover-background);
-      border-color: $hover-border;
-    }
-
-    &:focus,
-    &.focus {
-      color: color-contrast($hover-background);
-      @include gradient-bg($hover-background);
-      border-color: $hover-border;
-      @if $enable-shadows {
-        @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-contrast($background), $border, 15%), .5));
-      } @else {
-        // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-contrast($background), $border, 15%), .5);
-      }
-    }
-  }
-
-  // Disabled comes first so active can properly restyle
-  &.disabled,
-  &:disabled {
-    color: color-contrast($background);
-    background-color: $background;
-    border-color: $border;
-    // Remove CSS gradients if they're enabled
-    @if $enable-gradients {
-      background-image: none;
-    }
-  }
-
-  &:not(:disabled):not(.disabled):active,
-  &:not(:disabled):not(.disabled).active,
-  .show > &.dropdown-toggle {
-    color: color-contrast($active-background);
-    background-color: $active-background;
-    @if $enable-gradients {
-      background-image: none; // Remove the gradient for the pressed/active state
-    }
-    border-color: $active-border;
-
-    &:focus {
-      @if $enable-shadows and $btn-active-box-shadow != none {
-        @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-contrast($background), $border, 15%), .5));
-      } @else {
-        // Avoid using mixin so we can pass custom focus shadow properly
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-contrast($background), $border, 15%), .5);
-      }
-    }
-  }
-}
-
-@mixin badge-variant($bg) {
-  color: color-contrast($bg);
-  background-color: $bg;
-
-  @at-root a#{&} {
-    &:hover, &:focus { {
-      color: color-contrast($bg);
-      background-color: darken($bg, 10%);
-    }
-
-    &:focus,
-    &.focus {
-      outline: 0;
-      box-shadow: 0 0 0 $badge-focus-width rgba($bg, .5);
-    }
-  }
-}
+$badge-font-size:                   .75em !default;
+$badge-font-weight:                 $font-weight-bold !default;
+$badge-color:                       white !default;
+$badge-padding-y:                   .35em !default;
+$badge-padding-x:                   .65em !default;
+$badge-border-radius:               $border-radius !default;
 
 .badge {
   display: inline-flex;
@@ -83,16 +14,18 @@
   align-items: center;
   flex-wrap: nowrap;
   padding: $badge-padding-y $badge-padding-x;
+  @include font-size($badge-font-size);
   font-weight: $badge-font-weight;
   line-height: 1;
+  color: $badge-color;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   @include border-radius($badge-border-radius);
-  @include transition($badge-transition);
+  @include gradient-bg();
 
   @at-root a#{&} {
-    &:hover, &:focus { {
+    &:hover, &:focus {
       text-decoration: none;
     }
   }
@@ -115,7 +48,7 @@
     text-shadow: 0 1px 0 black;
 
     &:not(:disabled):not(.disabled) {
-      &:hover, &:focus { {
+      &:hover, &:focus {
         opacity: 0.5;
         background: white;
         color: rgba(black, 0.7);
@@ -124,48 +57,10 @@
     }
   }
 
-  svg { @include svg(1em); }
 }
 
 // Quick fix for badges in buttons
 .btn .badge {
   position: relative;
   top: -1px;
-}
-
-// Pill badges
-//
-// Make them extra rounded with a modifier to replace v3's badges.
-
-.pill {
-  padding-right: $badge-pill-padding-x;
-  padding-left: $badge-pill-padding-x;
-  @include border-radius($badge-pill-border-radius);
-}
-
-.badge-sm {
-  @include font-size(.75em);
-}
-
-.badge-lg {
-  @include font-size(1.3em);
-}
-
-.badge-btn {
-  @include box-shadow($btn-box-shadow);
-  cursor: pointer;
-}
-
-// Colors
-//
-// Contextual variations (linked badges get darker on :hover).
-
-@each $color, $value in $theme-colors {
-  .badge-#{$color} {
-    @include badge-variant($value);
-  }
-
-  .badge-btn.badge-#{$color} {
-    @include button-variant($value, $value);
-  }
 }

@@ -4,6 +4,13 @@ $sort-arrow-height:              $sort-arrow-width * 0.5 !default;
 $sort-arrow-color:               white !default;
 $sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
 
+$tab-active: $gray-100;
+$tab-inactive: $gray-500;
+$tab-inactive-hover: $gray-600;
+
+$cell-border-vertical: $gray-150;
+$cell-border-horizontal: $gray-250;
+$cell-hover-bg: $gray-050;
 
 .datatable {
   color: $body-color;
@@ -17,7 +24,7 @@ $sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
   display: grid;
   grid-auto-rows: minmax(33px, auto);
   font-size: 13px;
-  font-family: $font-family-sans-serif;
+  font-family: $font-family-body;
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
 
@@ -30,8 +37,8 @@ $sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
 
 .thead {
   position: relative;
-  background-color: $cl-tab-inactive;
-  color: color-contrast($cl-tab-inactive);
+  background-color: $tab-inactive;
+  color: color-contrast($tab-inactive);
   border-bottom: 1px solid $gray-450;
   // border-top: 1px solid $gray-450;
   grid-row-start: 1;
@@ -70,7 +77,7 @@ $sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
   }
 
   &.active {
-    background-color: $cl-tab-active;
+    background-color: $tab-active;
     color: $body-color;
 
     > .arrow {
@@ -118,7 +125,7 @@ $sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
   }
 
   &:not(.active):hover {
-    background-color: $cl-tab-inactive-hover;
+    background-color: $tab-inactive-hover;
   }
 
 }
@@ -126,14 +133,14 @@ $sort-arrow-outer-color:         fade-in(rgba(black, .2), .05) !default;
 
 .tbody {
   background-color: white;
-  border-bottom: 1px solid $cl-cell-border-horizontal;
-  border-right: 1px solid $cl-cell-border-vertical;
+  border-bottom: 1px solid $cell-border-horizontal;
+  border-right: 1px solid $cell-border-vertical;
   color: inherit;
 
   &:hover { text-decoration: none; }
 
   &.hover {
-    background-color: $cl-cell-hover-bg;
+    background-color: $cell-hover-bg;
   }
 
   &.lastRow {

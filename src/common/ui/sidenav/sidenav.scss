@@ -1,9 +1,10 @@
 
 $sidenav-color: $brand;
+$sidebar-minimum: 240px;
 
 .sidenav-container {
   position: relative;
-  background: $body-bg;
+  background: $background;
   display: grid;
   grid-template-columns: min-content auto;
   grid-template-areas: 'side panes';
@@ -13,7 +14,7 @@ $sidenav-color: $brand;
 
 .sidenav-fill {
   grid-area: side;
-  background: $cl-gray-lighter;
+  background: $surface-3;
 }
 
 .sidenav-aside {
@@ -57,7 +58,7 @@ $sidenav-color: $brand;
   // Disabled state lightens text
   &.disabled {
     .sidenav-link {
-      color: $nav-link-disabled-color;
+      color: $gray-600;
       pointer-events: none;
       cursor: default;
     }
@@ -80,7 +81,6 @@ $sidenav-color: $brand;
 
 
   &:hover, &:focus {
-    background: $cl-gray-light;
   }
 
 }
