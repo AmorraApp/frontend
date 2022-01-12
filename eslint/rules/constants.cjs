@@ -1,2 +1,0 @@
-
-exports.INDENTATION = 2;

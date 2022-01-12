@@ -1,15 +1,27 @@
 
 module.exports = exports = {
-  extends: "./eslint/react.cjs",
-
+  extends: "twipped/react",
+  rules: {
+    'import/no-named-as-default-member': 0,
+    'import/no-named-as-default': 0,
+  },
   overrides: [
     {
       files: [
         './*.js',
-        './eslint/**/*.js',
         './**/*.cjs',
       ],
-      extends: './eslint/node.cjs',
+      extends: 'twipped/node',
     },
   ],
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          [ 'common', './src/common' ],
+        ],
+        extensions: [ '.mjs', '.js', '.jsx', '.json' ],
+      },
+    },
+  },
 };
