@@ -5,7 +5,7 @@ import chainFunction from 'common/ui/createChainedFunction';
 import { map as mapChildren } from 'common/children';
 import ButtonGroup from 'common/ui/button/ButtonGroup';
 import ToggleButton from './ToggleButton';
-import useInputContext from '../useInputContext';
+import useInputContext from 'common/ui/useInputContext';
 import { v4 as uuid } from 'uuid';
 
 const propTypes = {

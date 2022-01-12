@@ -2,7 +2,7 @@ import { cl as classNames } from 'common/utils';
 import PropTypes from 'common/prop-types';
 import { forwardRef, useCallback } from 'react';
 import Feedback from './Feedback';
-import useInputContext from './useInputContext';
+import useInputContext from 'common/ui/useInputContext';
 import styles from './input.scss';
 import useFocus from 'common/ui/focus';
 import useMergedRefs from 'common/hooks/useMergedRefs';

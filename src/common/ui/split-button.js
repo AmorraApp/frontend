@@ -1,9 +1,9 @@
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import Button from './button';
-import ButtonGroup from './button/ButtonGroup';
-import Dropdown from './dropdown';
-import { alignPropType } from './dropdown/DropdownMenu';
+import Button from 'common/ui/button';
+import ButtonGroup from 'common/ui/button/ButtonGroup';
+import Dropdown from 'common/ui/dropdown';
+import { alignPropType } from 'common/ui/dropdown/DropdownMenu';
 
 const propTypes = {
   /**

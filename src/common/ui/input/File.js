@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import Feedback from './Feedback';
 import FormFileInput from './FileInput';
 import FormFileLabel from './FileLabel';
-import { InputContextProvider } from './useInputContext';
+import { InputContextProvider } from 'common/ui/useInputContext';
 import styles from './input.scss';
 
 const propTypes = {

@@ -7,7 +7,7 @@ export default function ({ attributes, bundle, meta, files, publicPath }) {
   const links = (files.css || [])
     .map(({ fileName }) => {
       const attrs = makeHtmlAttributes(attributes.link);
-      return `<link href="${publicPath}${fileName}" rel="stylesheet"${attrs}>`;
+      return `<link href="/${publicPath}${fileName}" rel="stylesheet"${attrs}>`;
     });
 
   const scripts = [];
@@ -17,9 +17,9 @@ export default function ({ attributes, bundle, meta, files, publicPath }) {
 
     const attrs = makeHtmlAttributes(attributes.script);
     if (file.isEntry) {
-      scripts.push(`<script src="${publicPath}${file.fileName}"${attrs}></script>`);
+      scripts.push(`<script src="/${publicPath}${file.fileName}"${attrs}></script>`);
     } else {
-      links.push(`<link rel="modulepreload" href="${publicPath}${file.fileName}"${attrs}>`);
+      links.push(`<link rel="modulepreload" href="/${publicPath}${file.fileName}"${attrs}>`);
     }
   }
 

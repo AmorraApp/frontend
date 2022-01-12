@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef, useCallback, useState } from 'react';
-import Button from 'common/ui/button';
+import Button, { Classes as ButtonClasses } from 'common/ui/button';
 
 const noop = () => undefined;
 
@@ -69,7 +69,7 @@ const ToggleButton = forwardRef(({
   }, []);
 
   return (
-    <Button {...props} ref={ref} className={classNames(className, focused && Button.Classes.focus, disabled && Button.Classes.disabled)} type={undefined} active={!!checked} as="label">
+    <Button {...props} ref={ref} className={classNames(className, focused && ButtonClasses.focus, disabled && ButtonClasses.disabled)} type={undefined} active={!!checked} as="label">
       <input
         name={name}
         type={type}

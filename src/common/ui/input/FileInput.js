@@ -1,7 +1,7 @@
 import { cl as classNames } from 'common/utils';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-import useInputContext from './useInputContext';
+import useInputContext from 'common/ui/useInputContext';
 import styles from './input.scss';
 
 const propTypes = {

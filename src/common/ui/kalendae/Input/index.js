@@ -13,8 +13,8 @@ import KalendaeInputFields from './InputFields';
 import ViewResetter from './ViewResetter';
 import CalendarAlt from 'common/svgs/regular/calendar-alt.svg';
 import styles from './kalendae-input.scss';
-import FormControl from 'common/ui/input/Control';
-import useInputContext from 'common/ui/input/useInputContext';
+import FormControl from 'common/ui/control';
+import useInputContext from 'common/ui/useInputContext';
 
 function propTypeChar (props, propName, componentName) {
   const prop = props[propName];

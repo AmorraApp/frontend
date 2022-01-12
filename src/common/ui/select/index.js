@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import useChildren from 'common/hooks/useChildren';
 import useStableMemo from 'common/hooks/useStableMemo';
 import Feedback from 'common/ui/input/Feedback';
-import useInputContext from 'common/ui/input/useInputContext';
+import useInputContext from 'common/ui/useInputContext';
 import { mapChildren } from 'common/children';
 import { SelectProvider, valuePropType } from './useSelectContext';
 import Dropdown from 'common/ui/dropdown';

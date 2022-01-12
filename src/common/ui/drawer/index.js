@@ -5,7 +5,7 @@ import { forwardRef, useCallback, useMemo } from 'react';
 import useDrawerContext, { DrawerContextProvider } from './useDrawerContext';
 import styles from './drawer.scss';
 import { isElement } from 'common/children';
-import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/ui/isobound';
+import useIsobound, { IsoboundProvider, IsoboundOutput } from 'common/ui/isobound';
 import { v4 as uuid } from 'uuid';
 
 const VARIANTS = [
@@ -24,7 +24,7 @@ export const DrawerContainer = forwardRef(({
   children,
   ...props
 }, ref) => (
-  <IsoboundContextProvider>
+  <IsoboundProvider>
     <DrawerContextProvider open={open} align={align}>
       <Component
         {...props}
@@ -46,7 +46,7 @@ export const DrawerContainer = forwardRef(({
         </div>
       </Component>
     </DrawerContextProvider>
-  </IsoboundContextProvider>
+  </IsoboundProvider>
 ));
 DrawerContainer.propTypes = {
   as: PropTypes.elementType,

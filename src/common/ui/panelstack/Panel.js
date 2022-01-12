@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { forwardRef, createContext, useContext, useRef, useEffect } from 'react';
 import { cl as classNames } from 'common/utils';
 import useStableMemo from 'common/hooks/useStableMemo';
-import useIsobound, { IsoboundContextProvider, IsoboundOutput } from 'common/ui/useIsobound';
+import useIsobound, { IsoboundProvider, IsoboundOutput } from 'common/ui/isobound';
 import Transition from 'common/ui/transition';
 import { v4 as uuid } from 'uuid';
 
@@ -67,7 +67,7 @@ export default function Panel (Component, { outerClassName, outerVariant } = {})
     variant = variant || outerVariant || stackVariant;
 
     const body = (
-      <IsoboundContextProvider>
+      <IsoboundProvider>
         <PanelContext.Provider value={panel}>
           <Transition
             appear={animate}
@@ -102,7 +102,7 @@ export default function Panel (Component, { outerClassName, outerVariant } = {})
           </Transition>
           <IsoboundOutput />
         </PanelContext.Provider>
-      </IsoboundContextProvider>
+      </IsoboundProvider>
     );
 
     if (parent.isRoot) return body;

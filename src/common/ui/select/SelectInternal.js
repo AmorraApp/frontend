@@ -9,7 +9,7 @@ import useMergedRefs from 'common/hooks/useMergedRefs';
 import SelectCaption from './SelectCaption';
 import SelectNative from './SelectNative';
 import ChevronDown from 'common/svgs/solid/chevron-down.svg';
-import FormControl from 'common/ui/input/Control';
+import FormControl from 'common/ui/control';
 import { DropdownMenu, DropdownItem, DropdownHeader, useDropdownContext } from 'common/ui/dropdown';
 import CloseButton from 'common/ui/close-button';
 import Check from 'common/svgs/regular/check-circle.svg';

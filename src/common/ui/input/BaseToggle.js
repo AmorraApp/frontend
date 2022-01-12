@@ -4,7 +4,7 @@ import { forwardRef, useRef, useEffect, useMemo } from 'react';
 import Feedback from './Feedback';
 import styles from './input.scss';
 import useMergedRefs from 'common/hooks/useMergedRefs';
-import useInputContext from './useInputContext';
+import useInputContext from 'common/ui/useInputContext';
 import { v4 as uuid } from 'uuid';
 
 const VARIANTS = [
