@@ -6,7 +6,7 @@
   "type": "module",
   "source": "src/index.html",
   "scripts": {
-    "start": "rimraf dist && NODE_OPTIONS=--max_old_space_size=4096 rollup --watch -c --no-treeshake",
+    "start": "rimraf dist && NODE_OPTIONS=--max_old_space_size=4096 node ./dev-stack.mjs",
     "build": "rimraf dist && rollup -c",
     "static": "rimraf dist prod && rollup -c && react-snapshot --build-dir dist --output-dir prod",
     "clean": "rimraf dist prod",

@@ -33,7 +33,7 @@ app.use((req, res) => {
     process.env.PORT || 4000,
     process.env.HOST || '0.0.0.0',
     function () {
-      console.log(`Server listening on port ${this.address().port} in ${app.settings.env} mode`);
+      console.log(`Server listening at http://localhost:${this.address().port} in ${app.settings.env} mode`);
     },
   );
 
@@ -42,7 +42,7 @@ app.use((req, res) => {
 
   watcher.on('event', (event) => {
     if (event.result) event.result.close();
-    console.log(event.code);
+    // console.log(event.code);
     // event.code can be one of:
     //   START        — the watcher is (re)starting
     //   BUNDLE_START — building an individual bundle
@@ -70,7 +70,9 @@ app.use((req, res) => {
     //                    "BUNDLE_END", you should call "event.result.close()" if
     //                    present once you are done.
 
-    if (event.code === 'ERROR') console.error(event.error.formatted || event.error.message);
+    if (event.code === 'ERROR') console.error('\n' + (event.error.formatted || event.error.message));
+    if (event.code === 'BUNDLE_START') process.stdout.write('Building bundle...');
+    if (event.code === 'BUNDLE_END') process.stdout.write('Finished\n');
   });
 
   async function shutdown () {
