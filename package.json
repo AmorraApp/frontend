@@ -23,9 +23,6 @@
   },
   "dependencies": {
     "@apollo/client": "~3.4.17",
-    "@aws-amplify/auth": "~4.3.12",
-    "@aws-amplify/core": "~4.3.4",
-    "@aws-sdk/client-cognito-identity-provider": "~3.40.0",
     "@popperjs/core": "~2.10.2",
     "bezier-easing": "~2.1.0",
     "bootstrap": "~5.1.3",
