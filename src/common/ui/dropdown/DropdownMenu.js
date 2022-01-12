@@ -172,7 +172,7 @@ const DropdownMenu = forwardRef(({
   // For custom components provide additional, non-DOM, props;
   if (typeof Component !== 'string') {
     menuProps.show = show;
-    menuProps.close = close;
+    menuProps.close = () => toggle(false);
   }
 
   let style = props.style;
