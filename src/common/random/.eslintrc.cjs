@@ -1,6 +1,6 @@
 
 module.exports = exports = {
-  extends: "../../../eslint/react.cjs",
+  extends: "twipped/react",
   rules: {
     'new-cap': 0,
   },

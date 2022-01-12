@@ -1,3 +1,4 @@
+/* global Element */
 
 import PropTypes from 'prop-types';
 

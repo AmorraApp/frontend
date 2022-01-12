@@ -1,4 +1,4 @@
-
+/* global URLSearchParams */
 import { isUndefinedOrNull, isArray, isSet, entries } from 'common/utils';
 
 export function stringify (obj) {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState, createContext, useContext, useCallback } from 'react';
+import { createContext, useContext } from 'react';
 import { gql, useQuery } from 'common/graphql';
 
 export const AUTH_STATUS_LOADING = null;
