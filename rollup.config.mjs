@@ -25,6 +25,7 @@ import { fileURLToPath } from 'url';
 const req = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const babelconfig = req('./babel.config.json');
 
 function resolve (...args) {
   args = args.filter(Boolean);
@@ -44,8 +45,26 @@ function resolve (...args) {
 
 const PROD = process.env.NODE_ENV === 'production';
 
-function pcss () {
-  return postcss({
+const plugins = [
+  // analyzer(),
+  html({ template }),
+  PROD && sizes({ ignoreEmpty: true, details: false }),
+  alias({
+    entries: [
+      { find: 'common', replacement: resolve('common') },
+      { find: 'vm', replacement: resolve('common/fills/null') }, // this fixes an issue with UUID
+      { find: 'object-assign', replacement: resolve('common/fills/object-assign.cjs') }, // common lib that we don't actually need
+    ],
+  }),
+  replace({
+    preventAssignment: true,
+    values: {
+      '__ENV_PROD__': JSON.stringify(PROD),
+      '__ENV_DEV__': JSON.stringify(!PROD),
+      ...dotenv,
+    },
+  }),
+  postcss({
     extract: false,
     inject: true,
     modules: true,
@@ -73,33 +92,7 @@ function pcss () {
         },
       },
     ],
-  });
-}
-
-const plugins = [
-  // analyzer(),
-  html({ template }),
-  PROD && sizes({ ignoreEmpty: true, details: false }),
-  alias({
-    entries: [
-      { find: 'common', replacement: resolve('common') },
-      { find: 'vm', replacement: resolve('common/fills/null') },
-      { find: '@aws-sdk/client-cloudwatch-logs', replacement: resolve('common/fills/cloudwatch-logs') },
-      { find: 'object-assign', replacement: resolve('common/fills/object-assign.cjs') },
-      { find: '@restart/hooks', replacement: resolve('common/hooks') },
-      { find: 'handybars', replacement: resolve('handybars/src/index.js') }, // eslint-disable-line node/no-extraneous-require
-      { find: '@twipped/utils', replacement: resolve('common/utils') },
-    ],
   }),
-  replace({
-    preventAssignment: true,
-    values: {
-      '__ENV_PROD__': JSON.stringify(process.env.NODE_ENV === 'production'),
-      '__ENV_DEV__': JSON.stringify(process.env.NODE_ENV !== 'production'),
-      ...dotenv,
-    },
-  }),
-  pcss(),
   json(),
   svg(),
   nodeResolve({ browser: true, preferBuiltins: false, extensions: [ '.mjs', '.js', '.json', '.jsx' ] }),
@@ -107,19 +100,7 @@ const plugins = [
     include: 'node_modules/**',
     sourceMap: false,
   }),
-  babel({
-    exclude: 'node_modules/**',
-    presets: [
-      [ "@babel/preset-env", {
-        modules: false,
-        useBuiltIns: "usage",
-        corejs: { version: 3, shippedProposals: true },
-      } ],
-      [ "@babel/preset-react", {
-        "runtime": "automatic",
-      } ],
-    ],
-  }),
+  babel(babelconfig),
 ];
 
 if (process.env.NODE_ENV === 'production') {
@@ -129,6 +110,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const moduleMatch = /node_modules\/([^/]+)\//;
+
+const INPUT = process.env.BUILD_TARGET || 'index';
 
 const config = {
   onwarn: (warning) => {
@@ -152,41 +135,18 @@ const config = {
     const [ , nodeModule ] = id.match(moduleMatch) || [];
     if (nodeModule) {
       if (
-        nodeModule.includes('@aws')
-        || nodeModule.includes('aws-amplify')
-        || nodeModule.includes('amazon')
-        || nodeModule.includes('tslib')
-        || nodeModule.includes('bowser')
-        || nodeModule.includes('crypto-js')
-        || nodeModule.includes('cookie')
-        || nodeModule.includes('isarray')
-        || nodeModule.includes('buffer')
-        || nodeModule.includes('url')
-        || nodeModule.includes('isomorphic-unfetchn')
-        || nodeModule.includes('zen-observable')
-        || nodeModule.includes('punycode')
-        || nodeModule.includes('universal-cookie')
-        || nodeModule.includes('querystring')
-        || nodeModule.includes('cookie')
-        || nodeModule.includes('base64-js')
-        || nodeModule.includes('js-cookie')
-        || nodeModule.includes('ieee754')
-        || nodeModule.includes('unfetch')
-      ) return 'aws';
-      if (nodeModule.includes('mobx')) return 'react';
-      if (
         nodeModule.includes('react')
         || nodeModule.includes('prop-types')
         || nodeModule.includes('history')
         || nodeModule.includes('scheduler')
         || nodeModule.includes('style-inject')
+        || nodeModule.includes('mobx')
       ) return 'react';
-
     }
     // if (id.includes('react/common/')) return 'common';
   },
   plugins,
-  input: './src/index.js',
+  input: `./src/${INPUT}.js`,
   preserveEntrySignatures: false,
   output: [
     {
