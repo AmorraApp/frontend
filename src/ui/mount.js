@@ -67,7 +67,7 @@ export function Orphanage () {
 }
 
 
-export const BodyMount = forwardRef(({ children, source }, ref) => {
+export const BodyMount = forwardRef(function BodyMount ({ children, source }, ref) {
   const mountRef = useLazyRef(() => BodyMountManager.attach({ ref, source }));
   const [ mountPoint, dispose ] = mountRef.current;
 
@@ -77,7 +77,7 @@ export const BodyMount = forwardRef(({ children, source }, ref) => {
 });
 BodyMount.displayName = 'BodyMount';
 BodyMount.propTypes = {
-  source: PropTypes.string,
+  source: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 };
 
 
@@ -90,10 +90,11 @@ export function useOrphan (body) {
   }
 
   const Orphan = useCallback(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [ , update ] = useReducer((state) => (state + 1) % 100, 0);
     triggerRef.current = update;
     return bodyRef.current;
-  });
+  }, [ triggerRef, bodyRef ]);
 
   useEffect(() => createOrphan(<Orphan />), []);
 

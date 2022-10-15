@@ -81,9 +81,16 @@ const ENV = envSchema({
       API_PORT: {
         type: 'integer',
       },
+      WEBPACK_HOST: {
+        type: 'string',
+        format: 'hostname',
+      },
+      WEBPACK_PORT: {
+        type: 'integer',
+      },
       PUBLIC_URL: {
         type: 'string',
-        format: 'url',
+        // format: 'url',
         default: 'https://amorra.us',
       },
       GRAPHQL_ENDPOINT: {
@@ -97,6 +104,11 @@ const ENV = envSchema({
       AUTH0_CLIENTID: {
         type: 'string',
         minLength: 32,
+      },
+      AUTH0_AUDIENCE: {
+        type: 'string',
+        format: 'url',
+        default: 'https://graphql.amorra.us',
       },
       USE_REACT_REFRESH: {
         type: 'boolean',
@@ -120,6 +132,7 @@ const {
   GRAPHQL_ENDPOINT,
   AUTH0_DOMAIN,
   AUTH0_CLIENTID,
+  AUTH0_AUDIENCE,
 } = ENV;
 
 ENV.BUILD_ENV = {
@@ -128,5 +141,6 @@ ENV.BUILD_ENV = {
   GRAPHQL_ENDPOINT,
   AUTH0_DOMAIN,
   AUTH0_CLIENTID,
+  AUTH0_AUDIENCE,
 };
 

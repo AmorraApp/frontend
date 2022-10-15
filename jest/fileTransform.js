@@ -1,19 +1,17 @@
 const path = require('path');
-const camelcase = require('camelcase'); // eslint-disable-line import/no-extraneous-dependencies
+const Case = require('case');
 
 // This is a custom Jest transformer turning file imports into filenames.
 // http://facebook.github.io/jest/docs/en/webpack.html
 
-module.exports = {
-  process(src, filename) {
+module.exports = exports = {
+  process (src, filename) {
     const assetFilename = JSON.stringify(path.basename(filename));
 
     if (filename.match(/\.svg$/)) {
       // Based on how SVGR generates a component name:
       // https://github.com/smooth-code/svgr/blob/01b194cf967347d43d4cbe6b434404731b87cf27/packages/core/src/state.js#L6
-      const pascalCaseFilename = camelcase(path.parse(filename).name, {
-        pascalCase: true
-      });
+      const pascalCaseFilename = Case.pascal(path.parse(filename).name);
       const componentName = `Svg${pascalCaseFilename}`;
       return {
         code: `
@@ -33,10 +31,10 @@ module.exports = {
               };
             }),
           };
-        `
+        `,
       };
     }
 
     return { code: `module.exports = ${assetFilename};` };
-  }
+  },
 };

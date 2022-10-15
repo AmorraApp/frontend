@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Component } from "react";
-import { warn } from 'common/utils';
+import warn from '@twipped/utils/warn';
 
 // Error boundaries currently have to be classes.
 class ErrorBoundary extends Component {

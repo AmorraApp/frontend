@@ -1,5 +1,7 @@
 import { Children, isValidElement, cloneElement, Fragment } from 'react';
-import { iteratee, isObject, isPrimitive } from 'common/utils';
+
+import iteratee from '@twipped/utils/iteratee';
+import { isObject, isPrimitive } from '@twipped/utils/types';
 
 export function* childIterator (children) {
   for (const child of Children.toArray(children)) {
@@ -27,6 +29,8 @@ const NATURAL_KEY = /^\.\d+$/;
  * Iterates through children that are typically specified as `props.children`,
  * returning only the children where the predicate results in a truthy return
  *
+ * @param children
+ * @param predicate
  */
 export function filterChildren (children, predicate) {
   predicate = iteratee(predicate);
@@ -49,6 +53,9 @@ export function filterChildren (children, predicate) {
  * The mapFunction provided index will be normalised to the components mapped,
  * so an invalid component would not increase the index.
  *
+ * @param children
+ * @param predicate
+ * @param raw
  */
 export function mapChildren (children, predicate, raw = false) {
   predicate = iteratee(predicate);
@@ -75,6 +82,9 @@ export function mapChildren (children, predicate, raw = false) {
  * The provided predicate(child, index) will be called for each
  * leaf child with the index reflecting the position relative to "valid components".
  * If the predicate returns false, the loop will exist.
+ *
+ * @param children
+ * @param predicate
  */
 export function forEachChild (children, predicate) {
   predicate = iteratee(predicate);

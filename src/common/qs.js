@@ -1,5 +1,5 @@
-/* global URLSearchParams */
-import { isUndefinedOrNull, isArray, isSet, entries } from 'common/utils';
+import { isUndefinedOrNull, isArray, isSet } from '@twipped/utils/types';
+import entries from '@twipped/utils/entries';
 
 export function stringify (obj) {
   const q = new URLSearchParams();

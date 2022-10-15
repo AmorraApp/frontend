@@ -1,2 +1,2 @@
 
-export { default as STATES } from './states.js';
+export { default as STATES } from './states';
